@@ -1,0 +1,29 @@
+{
+  "name": "angularjs-store",
+  "version": "1.0.1",
+  "description": "A simple state management for AngularJS",
+  "main": "dist/angularjs-store.js",
+  "scripts": {
+    "build": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rannie-peralta/angularjs-store.git"
+  },
+  "keywords": [],
+  "author": "Rannie Peralta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rannie-peralta/angularjs-store/issues"
+  },
+  "homepage": "https://github.com/rannie-peralta/angularjs-store#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.1.6",
+    "@babel/preset-env": "^7.1.6",
+    "angular": "^1.7.5",
+    "gulp": "^4.0.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-clean": "^0.4.0"
+  }
+}
