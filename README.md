@@ -1,2 +1,2 @@
 # angularjs-store
-A simple state management in AngularJS
+An AngularJS state manager.
