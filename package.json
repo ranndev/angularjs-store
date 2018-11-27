@@ -22,8 +22,10 @@
     "@babel/core": "^7.1.6",
     "@babel/preset-env": "^7.1.6",
     "angular": "^1.7.5",
+    "chai": "^4.2.0",
     "gulp": "^4.0.0",
     "gulp-babel": "^8.0.0",
-    "gulp-clean": "^0.4.0"
+    "gulp-mocha": "^6.0.0",
+    "mocha": "^5.2.0"
   }
 }
