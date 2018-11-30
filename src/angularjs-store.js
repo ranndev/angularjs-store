@@ -1,7 +1,9 @@
 const Store = (function () {
-  class Store {}
+  function Store() {
+    this.state = [];
+  }
 
   return Store;
 })();
 
-module.exports = Store;
+export default Store;
