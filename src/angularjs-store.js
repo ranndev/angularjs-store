@@ -23,10 +23,17 @@ const NgStore = (function () {
     }
 
     /**
-     * Get a new copy of current state.
-     * @todo Implement soon.
+     * Get a copy of state or just a property of state.
+     * @param {string} stateProp - Optional. Specific property of state.
+     * @returns {any} - State or single property of state.
      */
-    copy() {}
+    copy(stateProp) {
+      if (stateProp) {
+        return this.copier(this[$state][stateProp]);
+      } else {
+        return this.copier(this[$state]);
+      }
+    }
 
     /**
      * Dispatch an action for updating state.

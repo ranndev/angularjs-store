@@ -47,7 +47,13 @@ describe('AngularJS Store', () => {
 
   // TODO
   context('Method - copy', () => {
-    it('TODO', () => {});
+    it('initial state should not be equal to a copy', () => {
+      const initialState = {foo: 'hello', bar: {x: 300, y: 200}};
+      const store = new NgStore(initialState);
+
+      expect(initialState === store.copy()).to.equal(false);
+      expect(initialState.bar === store.copy('bar')).to.equal(false);
+    });
   });
 
   // TODO
