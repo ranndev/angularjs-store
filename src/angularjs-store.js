@@ -1,51 +1,26 @@
+import StateFactory from './models/state-factory';
+import HooksFactory from './models/hooks-factory';
+
 const NgStore = (function () {
-  const $state = Symbol('state');
+  let instances = 0;
+  const $$stateFactory = new StateFactory();
+  const $$hooksFactory = new HooksFactory();
 
   class NgStore {
-    /**
-     * @constructor
-     * @param {object} initialState - Initial state of store.
-     * @param {function} copier - Optional. A custom copier for store.
-     * @returns {NgStore} - NgStore instance.
-     */
-    constructor(initialState, copier) {
-      if (!angular.isObject(initialState)) {
-        throw new Error('Initial State must be an object');
-      }
-
-      this[$state] = initialState;
-
-      if (copier && !angular.isFunction(copier)) {
-        throw new Error('Copier must be a function');
-      }
-
-      this.copier = copier || angular.copy;
+    constructor(initialState, options = {}) {
+      this.$$id = ++instances;
+      
+      $$stateFactory.register(this.$$id, initialState, options.copier);
+      $$hooksFactory.register(this.$$id);
     }
 
-    /**
-     * Get a copy of state or just a property of state.
-     * @param {string} stateProp - Optional. Specific property of state.
-     * @returns {any} - State or single property of state.
-     */
-    copy(stateProp) {
-      if (stateProp) {
-        return this.copier(this[$state][stateProp]);
-      } else {
-        return this.copier(this[$state]);
-      }
-    }
+    copy() {}
 
-    /**
-     * Dispatch an action for updating state.
-     * @todo Implement soon.
-     */
-    dispatch() {}
+    dispatch(action, state) {}
 
-    /**
-     * Listen for dispatched action in store to get the latest state.
-     * @todo Implement soon.
-     */
-    hook() {}
+    hook(actionQuery, ...reducers) {}
+
+    destroy() {}
   }
 
   return NgStore;

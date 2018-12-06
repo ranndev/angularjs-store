@@ -6,8 +6,8 @@
   "scripts": {
     "build": "webpack --config webpack.build.js",
     "demo": "webpack-dev-server --config webpack.demo.js",
-    "test": "mocha-webpack --webpack-config webpack.test.js \"spec/**/*.spec.js\"",
-    "test:watch": "mocha-webpack --webpack-config webpack.test.js --watch \"spec/**/*.spec.js\""
+    "test": "mocha-webpack --webpack-config webpack.test.js \"specs/*.spec.js\"",
+    "test:watch": "mocha-webpack --webpack-config webpack.test.js --watch \"specs/*.spec.js\""
   },
   "repository": {
     "type": "git",
