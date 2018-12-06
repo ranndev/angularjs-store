@@ -14,13 +14,39 @@ const NgStore = (function () {
       $$hooksFactory.register(this.$$id);
     }
 
-    copy() {}
+    copy(stateProp) {
+      const state = $$stateFactory.getState(this.$$id);
 
-    dispatch(action, state) {}
+      return state.get(stateProp);
+    }
 
-    hook(actionQuery, ...reducers) {}
+    dispatch(action, newState) {
+      if (!angular.isString(action)) {
+        throw new Error('Dispatched action must be a string');
+      }
 
-    destroy() {}
+      if (!angular.isObject(newState)) {
+        throw new Error('Dispatched state must be an object');
+      }
+
+      const state = $$stateFactory.getState(this.$$id);
+      const hooks = $$hooksFactory.getHooks(this.$$id);
+      const updatedState = state.set(newState);
+
+      hooks.attemptRunAll(action, updatedState);
+    }
+
+    hook(actionQuery, ...reducers) {
+      const state = $$stateFactory.getState(this.$$id);
+      const hooks = $$hooksFactory.getHooks(this.$$id);
+
+      return hooks.addHook(actionQuery, reducers, state.get());
+    }
+
+    destroy() {
+      $$stateFactory.deregister(this.$$id);
+      $$hooksFactory.deregister(this.$$id);
+    }
   }
 
   return NgStore;

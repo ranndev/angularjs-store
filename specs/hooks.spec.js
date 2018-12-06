@@ -44,43 +44,45 @@ describe('Hooks', () => {
   });
 
   context('addHook method', () => {
-    it('should require first parameter (test) to be a function', () => {
-      const hooks = new Hooks;
+    it('should require first parameter (actionQuery) to be either a string, array or regexp', () => {
+      const hooks = new Hooks();
       const noop = angular.noop;
 
       expect(() => { hooks.addHook(null, [noop], {}) }).to.throw();
       expect(() => { hooks.addHook(undefined, [noop], {}) }).to.throw();
       expect(() => { hooks.addHook(true, [noop], {}) }).to.throw();
-      expect(() => { hooks.addHook('foo', [noop], {}) }).to.throw();
       expect(() => { hooks.addHook(123, [noop], {}) }).to.throw();
-      expect(() => { hooks.addHook(function () {}, [noop], {}) }).to.not.throw();
+      expect(() => { hooks.addHook(function () {}, [noop], {}) }).to.throw();
+      expect(() => { hooks.addHook('foo', [noop], {}) }).to.not.throw();
+      expect(() => { hooks.addHook([], [noop], {}) }).to.not.throw();
+      expect(() => { hooks.addHook(/.*/, [noop], {}) }).to.not.throw();
     });
 
     it('should require second parameter (reducers) to be an array of function', () => {
       const hooks = new Hooks();
       const noop = angular.noop;
 
-      expect(() => { hooks.addHook(noop, null, {}) }).to.throw();
-      expect(() => { hooks.addHook(noop, undefined, {}) }).to.throw();
-      expect(() => { hooks.addHook(noop, true, {}) }).to.throw();
-      expect(() => { hooks.addHook(noop, 'foo', {}) }).to.throw();
-      expect(() => { hooks.addHook(noop, 123, {}) }).to.throw();
-      expect(() => { hooks.addHook(noop, [], {}) }).to.throw();
-      expect(() => { hooks.addHook(noop, ['bar', noop], {}) }).to.throw();
-      expect(() => { hooks.addHook(noop, [noop], {}) }).to.not.throw();
-      expect(() => { hooks.addHook(noop, [noop, function () {}, () => {}], {}) }).to.not.throw();
+      expect(() => { hooks.addHook('foo', null, {}) }).to.throw();
+      expect(() => { hooks.addHook('foo', undefined, {}) }).to.throw();
+      expect(() => { hooks.addHook('foo', true, {}) }).to.throw();
+      expect(() => { hooks.addHook('foo', 'foo', {}) }).to.throw();
+      expect(() => { hooks.addHook('foo', 123, {}) }).to.throw();
+      expect(() => { hooks.addHook('foo', [], {}) }).to.throw();
+      expect(() => { hooks.addHook('foo', ['bar', noop], {}) }).to.throw();
+      expect(() => { hooks.addHook('foo', [noop], {}) }).to.not.throw();
+      expect(() => { hooks.addHook('foo', [noop, function () {}, () => {}], {}) }).to.not.throw();
     });
 
     it('should require third parameter (initialRunState) to be an object', () => {
       const hooks = new Hooks();
       const noop = angular.noop;
 
-      expect(() => { hooks.addHook(noop, [noop], null) }).to.throw();
-      expect(() => { hooks.addHook(noop, [noop], undefined) }).to.throw();
-      expect(() => { hooks.addHook(noop, [noop], true) }).to.throw();
-      expect(() => { hooks.addHook(noop, [noop], 'foo') }).to.throw();
-      expect(() => { hooks.addHook(noop, [noop], 123) }).to.throw();
-      expect(() => { hooks.addHook(noop, [noop], {}) }).to.not.throw();
+      expect(() => { hooks.addHook('foo', [noop], null) }).to.throw();
+      expect(() => { hooks.addHook('foo', [noop], undefined) }).to.throw();
+      expect(() => { hooks.addHook('foo', [noop], true) }).to.throw();
+      expect(() => { hooks.addHook('foo', [noop], 'foo') }).to.throw();
+      expect(() => { hooks.addHook('foo', [noop], 123) }).to.throw();
+      expect(() => { hooks.addHook('foo', [noop], {}) }).to.not.throw();
     });
   });
 });

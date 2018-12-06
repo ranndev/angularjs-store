@@ -14,6 +14,12 @@ export default class HooksFactory {
   }
 
   getHooks(storeId) {
-    return this.storesHooks[storeId];
+    const storeHooks = this.storesHooks[storeId];
+
+    if (!angular.isDefined(storeHooks)) {
+      throw new Error('No hooks container registered by store ', storeId);
+    }
+
+    return storeHooks;
   }
 }

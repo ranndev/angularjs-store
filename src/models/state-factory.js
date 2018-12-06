@@ -14,6 +14,12 @@ export default class StateFactory {
   }
 
   getState(storeId) {
-    return this.storesState[storeId];
+    const storeState = this.storesState[storeId];
+
+    if (!angular.isDefined(storeState)) {
+      throw new Error('No state registered by store ', storeId);
+    }
+
+    return storeState;
   }
 }
