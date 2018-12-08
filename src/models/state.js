@@ -1,31 +1,26 @@
 export default class State {
-  constructor(initialData, customCopier) {
+  constructor(initialData) {
     if (!angular.isObject(initialData)) {
       throw new Error('State initial data must be an object');
     }
 
-    if (angular.isDefined(customCopier) && !angular.isFunction(customCopier)) {
-      throw new Error('State custom copier must be a function')
-    }
-
-    this.copy = customCopier || angular.copy;
-    this.initialData = this.copy(initialData);
-    this.data = this.copy(this.initialData);
+    this.initialData = angular.copy(initialData);
+    this.data = angular.copy(this.initialData);
   }
 
   get(prop) {
     if (angular.isDefined(prop)) {
-      return this.copy(this.data[prop]);
+      return angular.copy(this.data[prop]);
     } else {
-      return this.copy(this.data);
+      return angular.copy(this.data);
     }
   }
 
   set(newData) {
-    return this.copy(newData, this.data);
+    return angular.merge(this.data, newData);
   }
 
   reset() {
-    this.data = this.copy(this.initialData);
+    this.data = angular.copy(this.initialData);
   }
 }

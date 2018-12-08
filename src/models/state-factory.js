@@ -5,8 +5,8 @@ export default class StateFactory {
     this.storesState = {};
   }
 
-  register(storeId, initialState, customCopier) {
-    this.storesState[storeId] = new State(initialState, customCopier);
+  register(storeId, initialState) {
+    this.storesState[storeId] = new State(initialState);
   }
 
   deregister(storeId) {
