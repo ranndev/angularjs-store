@@ -1,0 +1,17 @@
+body {
+  background-color: $gray-100;
+}
+
+.root-container {
+  max-width: map-get($grid-breakpoints, 'md');
+  margin: 0 auto;
+  padding: map-get($spacers, 3);
+
+  @include media-breakpoint-up('lg') {
+    padding: map-get($spacers, 4) 0;
+  }
+
+  > .main-heading {
+    margin-bottom: map-get($spacers, 4);
+  }
+}

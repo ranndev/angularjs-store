@@ -1,0 +1,13 @@
+group-a-component-c {
+  flex: 1;
+  flex-direction: column;
+  display: flex;
+  margin: 0 map-get($spacers, 2);
+
+  .list-group-item {
+    padding: map-get($spacers, 2);
+    word-wrap: break-word;
+    word-break: break-word;
+    white-space: pre-wrap;
+  }
+}

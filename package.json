@@ -5,7 +5,8 @@
   "main": "dist/angularjs-store.js",
   "scripts": {
     "build": "webpack --config webpack.build.js",
-    "demo": "webpack-dev-server --config webpack.demo.js",
+    "build:demo": "webpack --config webpack.demo.prod.js",
+    "serve:demo": "webpack-dev-server --config webpack.demo.dev.js",
     "test": "mocha-webpack --webpack-config webpack.test.js \"specs/*.spec.js\"",
     "test:watch": "mocha-webpack --webpack-config webpack.test.js --watch \"specs/*.spec.js\""
   },
@@ -20,7 +21,9 @@
     "url": "https://github.com/rannie-peralta/angularjs-store/issues"
   },
   "homepage": "https://github.com/rannie-peralta/angularjs-store#readme",
-  "dependencies": {},
+  "dependencies": {
+    "html-loader": "^0.5.5"
+  },
   "devDependencies": {
     "@babel/core": "^7.1.6",
     "@babel/preset-env": "^7.1.6",

@@ -1,4 +1,11 @@
-import 'bootstrap/scss/bootstrap';
-
+import './index.scss';
 import 'angular';
-import Store from 'src/angularjs-store';
+
+import './stores/_index';
+import './components/_index';
+
+angular
+  .module('app', [
+    'app.stores',
+    'app.components'
+  ]);

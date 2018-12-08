@@ -1,0 +1,21 @@
+<h5>Group A</h5>
+
+<strong class="mb-2">Store states:</strong>
+
+<div class="table-wrapper">
+  <table class="table table-sm border-bottom">
+    <col width="150px">
+    <tbody>
+      <tr ng-repeat="state in groupA.states">
+        <td><strong>State {{state.name}}</strong></td>
+        <td>{{state.value}}</td>
+      </tr>
+    </tbody>
+  </table>  
+</div>
+
+<div class="group-components">
+  <group-a-component-a></group-a-component-a>
+  <group-a-component-b></group-a-component-b>
+  <group-a-component-c></group-a-component-c>
+</div>

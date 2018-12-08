@@ -1,0 +1,10 @@
+<strong>Group A - Component A</strong>
+<span>State A Editor</span>
+<input type="text" class="form-control mb-3"
+  ng-model="groupAComponentA.state.value"
+  ng-change="groupAComponentA.handleChange()">
+
+<strong>Other states:</strong>
+<ul class="list-group">
+  <li class="list-group-item" ng-repeat="state in groupAComponentA.otherStates"><strong>State {{state.name}}:</strong> {{state.value}}</li>
+</ul>
