@@ -1,5 +1,7 @@
 # angularjs-store
-An AngularJS state manager.
+A simple AngularJS state manager.
+
+See the demo [here](https://angularjs-store-demo.netlify.com/)
 
 ### Installation
 
