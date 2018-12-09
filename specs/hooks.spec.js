@@ -1,5 +1,7 @@
 import Hooks from 'src/models/hooks';
+import Hook from 'src/models/hook';
 import HookLink from 'src/models/hook-link';
+import State from 'src/models/state';
 import {expect} from 'chai';
 import benv from 'benv';
 
@@ -26,63 +28,61 @@ describe('Hooks', () => {
   context('instance', () => {
     it('should be an instance of Hooks', () => {
       const hooks = new Hooks();
+
       expect(hooks.constructor.name).to.equal('Hooks');
       expect(hooks).to.be.an.instanceof(Hooks);
     });
 
     it('should have an initial empty array hooks', () => {
       const hooks = new Hooks();
-      expect(hooks.hooks).to.be.an('array').that.is.an.empty;
-    });  
 
-    it('should exactly have a hooks property and addHook and attemptRunAll methods', () => {
+      expect(hooks.hooks).to.be.an('array').that.is.an.empty;
+    });
+
+    it('should have a hooks property', () => {
       const hooks = new Hooks();
-      expect(hooks).to.have.all.keys('hooks');
+
+      expect(hooks).to.have.keys('hooks');
+    });
+
+    it('should respond to addHook and attemptRunAll methods', () => {
+      const hooks = new Hooks();
+
       expect(hooks).to.respondTo('addHook');
       expect(hooks).to.respondTo('attemptRunAll');
     });
   });
 
   context('addHook method', () => {
-    it('should require first parameter (actionQuery) to be either a string, array or regexp', () => {
+    it('should add an entry of hook', () => {
       const hooks = new Hooks();
-      const noop = angular.noop;
 
-      expect(() => { hooks.addHook(null, [noop], {}) }).to.throw();
-      expect(() => { hooks.addHook(undefined, [noop], {}) }).to.throw();
-      expect(() => { hooks.addHook(true, [noop], {}) }).to.throw();
-      expect(() => { hooks.addHook(123, [noop], {}) }).to.throw();
-      expect(() => { hooks.addHook(function () {}, [noop], {}) }).to.throw();
-      expect(() => { hooks.addHook('foo', [noop], {}) }).to.not.throw();
-      expect(() => { hooks.addHook([], [noop], {}) }).to.not.throw();
-      expect(() => { hooks.addHook(/.*/, [noop], {}) }).to.not.throw();
+      hooks.addHook(angular.noop, [angular.noop], new State({}));
+
+      expect(hooks.hooks).to.have.a.lengthOf(1);
+      expect(hooks.hooks[0]).to.be.an.instanceof(Hook);
     });
 
-    it('should require second parameter (reducers) to be an array of function', () => {
+    it('should return a HookLink instance', () => {
       const hooks = new Hooks();
-      const noop = angular.noop;
+      const hookLink = hooks.addHook(angular.noop, [angular.noop], new State({}));
 
-      expect(() => { hooks.addHook('foo', null, {}) }).to.throw();
-      expect(() => { hooks.addHook('foo', undefined, {}) }).to.throw();
-      expect(() => { hooks.addHook('foo', true, {}) }).to.throw();
-      expect(() => { hooks.addHook('foo', 'foo', {}) }).to.throw();
-      expect(() => { hooks.addHook('foo', 123, {}) }).to.throw();
-      expect(() => { hooks.addHook('foo', [], {}) }).to.throw();
-      expect(() => { hooks.addHook('foo', ['bar', noop], {}) }).to.throw();
-      expect(() => { hooks.addHook('foo', [noop], {}) }).to.not.throw();
-      expect(() => { hooks.addHook('foo', [noop, function () {}, () => {}], {}) }).to.not.throw();
+      expect(hookLink).to.be.an.instanceof(HookLink);
     });
+  });
 
-    it('should require third parameter (initialRunState) to be an object', () => {
+  context('attemptRunAll method', () => {
+    it('should attempt to run all hooks', () => {
+      let hookRunAttempts = 0;
+      const expectedRunAttempts = 3;
+      const reducerStub = () => { hookRunAttempts++ };
       const hooks = new Hooks();
-      const noop = angular.noop;
 
-      expect(() => { hooks.addHook('foo', [noop], null) }).to.throw();
-      expect(() => { hooks.addHook('foo', [noop], undefined) }).to.throw();
-      expect(() => { hooks.addHook('foo', [noop], true) }).to.throw();
-      expect(() => { hooks.addHook('foo', [noop], 'foo') }).to.throw();
-      expect(() => { hooks.addHook('foo', [noop], 123) }).to.throw();
-      expect(() => { hooks.addHook('foo', [noop], {}) }).to.not.throw();
+      for (let i = 0; i < expectedRunAttempts; i++) {
+        hooks.addHook(() => true, [reducerStub], new State({}));
+      }
+
+      expect(hookRunAttempts).to.equal(expectedRunAttempts);
     });
   });
 });

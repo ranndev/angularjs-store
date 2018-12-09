@@ -21,9 +21,7 @@
     "url": "https://github.com/rannie-peralta/angularjs-store/issues"
   },
   "homepage": "https://github.com/rannie-peralta/angularjs-store#readme",
-  "dependencies": {
-    "html-loader": "^0.5.5"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.1.6",
     "@babel/preset-env": "^7.1.6",
@@ -34,6 +32,7 @@
     "chai": "^4.2.0",
     "clean-webpack-plugin": "^1.0.0",
     "css-loader": "^1.0.1",
+    "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "jsdom": "10.1.0",
     "mini-css-extract-plugin": "^0.4.5",

@@ -2,7 +2,7 @@
 <span>State A Editor</span>
 <input type="text" class="form-control mb-3"
   ng-model="groupAComponentA.state.value"
-  ng-change="groupAComponentA.handleChange()">
+  ng-keyup="groupAComponentA.handleKeyup($event)">
 
 <strong>Other states:</strong>
 <ul class="list-group">

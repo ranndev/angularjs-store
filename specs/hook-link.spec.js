@@ -42,11 +42,46 @@ describe('HookLink', () => {
       expect(hookLink).to.be.an.instanceof(HookLink);
     });
 
-    it('should have a destroy and bindDestroy methods', () => {
+    it('should respond to destroy and destroyOn methods', () => {
       const hookLink = new HookLink(angular.noop);
 
       expect(hookLink).to.respondTo('destroy');
-      expect(hookLink).to.respondTo('bindDestroy');
+      expect(hookLink).to.respondTo('destroyOn');
+    });
+  });
+
+  context('destroy method', () => {
+    it('should call the destroyer function', () => {
+      let isDestroyerCalled = false;
+      const destroyer = () => { isDestroyerCalled = true }
+      const hookLink = new HookLink(destroyer);
+
+      hookLink.destroy();
+
+      expect(isDestroyerCalled).to.be.true;
+    });
+  });
+
+  context('destroyOn method', () => {
+    it('should call the destroyer function after scope $destroy is triggered', () => {
+      let scopeStub = {
+        hookLinkDestroyer: null,
+        triggerDestroy() {
+          this.hookLinkDestroyer();
+        },
+        $on(event, callback) {
+          this.hookLinkDestroyer = callback;
+        }
+      }
+
+      let isDestroyerCalled = false;
+      const destroyer = () => { isDestroyerCalled = true }
+      const hookLink = new HookLink(destroyer);
+
+      hookLink.destroyOn(scopeStub);
+      scopeStub.triggerDestroy();
+
+      expect(isDestroyerCalled).to.be.true;
     });
   });
 });
