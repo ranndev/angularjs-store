@@ -110,3 +110,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 * https://github.com/revolunet/node-readme
 * https://github.com/boennemann/badges/blob/master/README.md
 
+## Fit Badges
+
+[![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
+[![Open Source Love](https://badges.frapsoft.com/os/mit/mit.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
