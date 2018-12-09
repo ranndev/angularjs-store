@@ -1,10 +1,9 @@
 {
   "name": "angularjs-store",
-  "version": "1.0.1",
-  "description": "A simple state management for AngularJS",
-  "main": "dist/angularjs-store.js",
+  "version": "2.0.0",
+  "description": "A tools to easily manage your state in AngularJS Application",
+  "main": "src/angularjs-store.js",
   "scripts": {
-    "build": "webpack --config webpack.build.js",
     "build:demo": "webpack --config webpack.demo.prod.js",
     "serve:demo": "webpack-dev-server --config webpack.demo.dev.js",
     "test": "mocha-webpack --webpack-config webpack.test.js \"specs/*.spec.js\"",
@@ -14,9 +13,22 @@
     "type": "git",
     "url": "git+https://github.com/rannie-peralta/angularjs-store.git"
   },
-  "keywords": [],
+  "keywords": [
+    "angularjs",
+    "angular1",
+    "store",
+    "state",
+    "predictable",
+    "manager",
+    "management",
+    "observable",
+    "emitter",
+    "flux",
+    "redux",
+    "reactive"
+  ],
   "author": "Rannie Peralta",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/rannie-peralta/angularjs-store/issues"
   },
