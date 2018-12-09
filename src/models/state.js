@@ -1,13 +1,17 @@
-export default class State {
+class State {
+  /**
+   * @constructor
+   * @param {object} initialData initial data of state.
+   * @returns {State}
+   */
   constructor(initialData) {
-    if (!angular.isObject(initialData)) {
-      throw new Error('State initial data must be an object');
-    }
-
-    this.initialData = angular.copy(initialData);
-    this.data = angular.copy(this.initialData);
+    this.data = angular.copy(initialData);
   }
 
+  /**
+   * Get a new copy of state data.
+   * @param {string} prop optional. key to get a specific property in state.
+   */
   get(prop) {
     if (angular.isDefined(prop)) {
       return angular.copy(this.data[prop]);
@@ -16,11 +20,13 @@ export default class State {
     }
   }
 
+  /**
+   * Update a state data.
+   * @param {object} newData data that merge to the current state data.
+   */
   set(newData) {
     return angular.merge(this.data, newData);
   }
-
-  reset() {
-    this.data = angular.copy(this.initialData);
-  }
 }
+
+export default State;
