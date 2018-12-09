@@ -101,3 +101,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 * Hat tip to anyone whose code was used
 * Inspiration
 * etc
+
+
+## Templates
+
+* https://github.com/blueimp/JavaScript-Templates/blob/master/README.md
+* https://github.com/dbader/readme-template
+* https://github.com/revolunet/node-readme
+* https://github.com/boennemann/badges/blob/master/README.md
+
