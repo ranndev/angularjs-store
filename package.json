@@ -1,6 +1,6 @@
 {
   "name": "angularjs-store",
-  "version": "2.0.0",
+  "version": "2.0.2",
   "description": "A tools to easily manage your state in AngularJS Application",
   "main": "src/angularjs-store.js",
   "scripts": {
