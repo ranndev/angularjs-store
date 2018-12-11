@@ -1,2 +1,2 @@
-# Get the current state
+# Update the state
 
