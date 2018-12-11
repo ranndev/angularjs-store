@@ -1,5 +1,6 @@
 node_modules
 demo/build
+docs/_book
 
 ### Node ###
 # Logs

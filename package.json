@@ -5,7 +5,9 @@
   "main": "src/angularjs-store.js",
   "scripts": {
     "build:demo": "webpack --config webpack.demo.prod.js",
+    "build:docs": "gitbook build ./docs",
     "serve:demo": "webpack-dev-server --config webpack.demo.dev.js",
+    "serve:docs": "gitbook serve ./docs",
     "test": "mocha-webpack --webpack-config webpack.test.js \"specs/*.spec.js\"",
     "test:watch": "mocha-webpack --webpack-config webpack.test.js --watch \"specs/*.spec.js\""
   },
@@ -45,6 +47,7 @@
     "chai": "^4.2.0",
     "clean-webpack-plugin": "^1.0.0",
     "css-loader": "^1.0.1",
+    "gitbook-cli": "^2.3.2",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "jsdom": "10.1.0",
