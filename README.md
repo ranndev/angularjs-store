@@ -17,7 +17,7 @@ AngularJS Store will guide you to create a one way data flow in your application
   * [Get the current state](#get-the-current-state)
   * [Update the state](#update-the-state)
   * [Get notified on state changes](#get-notified-on-state-changes)
-  * [Destroying hooks](#destroying-hooks)
+  * [Stop from receiving notifications](#stop-from-receiving-notifications)
 * [Documentation](#documentation)
   * [NgStore](#ngstore)
   * [copy](#copy)
@@ -165,9 +165,31 @@ function ComponentC($scope, CounterStore) {
 }
 ```
 
-### Destroying hooks
+### Stop from receiving notifications
 
-_Working in progress..._
+Whenever we add a hook in the store it will always return a `HookLink` instance that represents the link between the hook and the store. If we want to stop our hooks from receiving a dispatched action, we can use that `HookLink` instance. It has two methods: `destroy` which we can use for manual destroying and `destroyOn` for auto destroying of hooks. After the hook destroyed it will no longer receive any dispatched action from store.
+
+Let's see how to use that methods in this example.
+
+```javascript
+function ComponentC($scope, CounterStore) {
+  const hookLink = CounterStore.hook('INCREMENT_COUNT', (state) => {
+    $scope.count = state.count;
+  });
+
+  // Manual Destroying
+  hookLink.destroy();
+
+  // Auto Destroying
+  // hookLink destroyed right after the $scope destroyed
+  hookLink.destroyOn($scope);
+
+  // Short syntax for auto destroying
+  CounterStore.hook('INCREMENT_COUNT', (state) => {
+    $scope.count = state.count;
+  }).destroyOn($scope);
+}
+```
 
 ## Documentation
 
@@ -195,7 +217,7 @@ Send an state update to store.
 
 _**action**:string_ - action label.
 
-_**newState**:(object|function)_ - new state the will merge to current state. Exceeded properties are not restricted.
+_**newState**:(object|function)_ - new state that will merge to current state. Exceeded properties are not restricted.
 
 ### hook
 
@@ -203,9 +225,9 @@ Listen to certain dispatched action.
 
 **parameters**
 
-_**actionQuery**:(string|string[]|RegExp)_ - _Working in progress..._
+_**actionQuery**:(string|string[]|RegExp)_ - query that control the hook to only repond on certain dispatched actions. It can be a `string` for querying single action or it can be an array of `string` or `RegExp` to query multiple actions.
 
-_**...reducers**:(function)_ - _Working in progress..._
+_**...reducers**:(function)_ - function(s) that called after the dispatched action are passed to `actionQuery` test. 
 
 **return**
 
