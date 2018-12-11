@@ -1,0 +1,2 @@
+# Stop from receiving notifications
+
