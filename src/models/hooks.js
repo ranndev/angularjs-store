@@ -1,6 +1,5 @@
 import Hook from './hook';
 import HookLink from './hook-link';
-import State from './state';
 
 class Hooks {
   /**

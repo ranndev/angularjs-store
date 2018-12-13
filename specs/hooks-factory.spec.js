@@ -1,12 +1,12 @@
 import HooksFactory from 'src/models/hooks-factory';
 import Hooks from 'src/models/hooks';
-import {expect} from 'chai';
+import { expect } from 'chai';
 import benv from 'benv';
 
-before(function(done) {
-  benv.setup(function() {
+before((done) => {
+  benv.setup(() => {
     benv.expose({
-      angular: benv.require('../../node_modules/angular/angular.js', 'angular')
+      angular: benv.require('../../node_modules/angular/angular.js', 'angular'),
     });
 
     done();
@@ -39,10 +39,12 @@ describe('HooksFactory', () => {
       const factory = new HooksFactory();
       const storeId = 1;
 
+      // eslint-disable-next-line no-unused-expressions
       expect(factory.storesHooks[storeId]).to.be.undefined;
 
       factory.register(storeId);
 
+      // eslint-disable-next-line no-unused-expressions
       expect(factory.storesHooks[storeId]).to.be.ok;
       expect(factory.storesHooks[storeId]).to.be.an.instanceof(Hooks);
     });
@@ -60,6 +62,6 @@ describe('HooksFactory', () => {
   });
 });
 
-after(function() {
+after(() => {
   benv.teardown();
 });

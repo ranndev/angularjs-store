@@ -27,7 +27,7 @@ class HookLink {
     scope.$on('$destroy', () => {
       this.destroyer();
     });
-  };
+  }
 }
 
 export default HookLink;

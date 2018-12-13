@@ -1,0 +1,19 @@
+{
+  "extends": "airbnb-base",
+  "env": {
+    "browser": true,
+    "mocha": true,
+    "node": true
+  },
+  "globals": {
+    "angular": true
+  },
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "map": [["src", "./src"]]
+      },
+      "extensions": [".js"]
+    }
+  }
+}

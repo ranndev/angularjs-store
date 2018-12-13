@@ -1,8 +1,7 @@
 import StateFactory from './models/state-factory';
 import HooksFactory from './models/hooks-factory';
-import HookLink from './models/hook-link';
 
-const NgStore = (function () {
+const MainModel = (function initializeNgStore() {
   let instances = 0;
   const $$stateFactory = new StateFactory();
   const $$hooksFactory = new HooksFactory();
@@ -18,7 +17,8 @@ const NgStore = (function () {
         throw new Error('Initial state must be an object');
       }
 
-      this.$$id = ++instances;
+      instances += 1;
+      this.$$id = instances;
 
       $$stateFactory.register(this.$$id, initialState);
       $$hooksFactory.register(this.$$id);
@@ -46,18 +46,18 @@ const NgStore = (function () {
       let test = null;
 
       if (angular.isString(actionQuery)) {
-        test = (action) => (action === actionQuery);
+        test = action => (action === actionQuery);
       } else if (angular.isArray(actionQuery)) {
-        test = (action) => (actionQuery.indexOf(action) > -1);
+        test = action => (actionQuery.indexOf(action) > -1);
       } else if (actionQuery instanceof RegExp) {
-        test = (action) => actionQuery.test(action);
+        test = action => actionQuery.test(action);
       } else {
         throw new Error('Hook action query must be either a string, array or regexp');
       }
 
       if (
-        reducers.length === 0 ||
-        reducers.filter((reducer) => !angular.isFunction(reducer)).length > 0
+        reducers.length === 0
+        || reducers.filter(reducer => !angular.isFunction(reducer)).length > 0
       ) {
         throw new Error('Hook reducers is required and must be all functions');
       }
@@ -81,20 +81,24 @@ const NgStore = (function () {
 
       const state = $$stateFactory.getState(this.$$id);
 
+      let data;
+
       if (angular.isFunction(newState)) {
-        newState = newState(state.get());
-      } else if (!angular.isObject(newState) || angular.isArray(newState)) {
+        data = newState(state.get());
+      } else if (angular.isObject(newState) && !angular.isArray(newState)) {
+        data = newState;
+      } else {
         throw new Error('New state must be an object');
       }
 
       const hooks = $$hooksFactory.getHooks(this.$$id);
 
-      state.set(newState);
+      state.set(data);
       hooks.attemptRunAll(action, state);
     }
   }
 
   return NgStore;
-})();
+}());
 
-export default NgStore;
+export default MainModel;

@@ -1,11 +1,13 @@
+/* eslint-disable no-new */
+
 import State from 'src/models/state';
-import {expect} from 'chai';
+import { expect } from 'chai';
 import benv from 'benv';
 
-before(function(done) {
-  benv.setup(function() {
+before((done) => {
+  benv.setup(() => {
     benv.expose({
-      angular: benv.require('../../node_modules/angular/angular.js', 'angular')
+      angular: benv.require('../../node_modules/angular/angular.js', 'angular'),
     });
 
     done();
@@ -18,8 +20,8 @@ describe('State', () => {
   });
 
   it('should only call with a \'new\' keyword', () => {
-    expect(() => { State({}) }).to.throw();
-    expect(() => { new State({}) }).to.not.throw();
+    expect(() => { State({}); }).to.throw();
+    expect(() => { new State({}); }).to.not.throw();
   });
 
   context('instance', () => {
@@ -46,7 +48,7 @@ describe('State', () => {
 
   context('get method', () => {
     it('should return a new copy of state', () => {
-      const initialData = {foo: 'bar'};
+      const initialData = { foo: 'bar' };
       const state = new State(initialData);
 
       expect(state.get()).to.not.equal(initialData);
@@ -59,7 +61,7 @@ describe('State', () => {
     });
 
     it('should get a single property of state', () => {
-      const state = new State({foo: 'bar'});
+      const state = new State({ foo: 'bar' });
 
       expect(state.get('foo')).to.equal('bar');
     });
@@ -67,14 +69,14 @@ describe('State', () => {
 
   context('set method', () => {
     it('should update the state', () => {
-      const state = new State({foo: 'bar', bar: 'foo'});
-      let newState = state.set({bar: 'fooooooo'});
+      const state = new State({ foo: 'bar', bar: 'foo' });
+      const newState = state.set({ bar: 'fooooooo' });
 
-      expect(newState).to.deep.equal({foo: 'bar', bar: 'fooooooo'});
+      expect(newState).to.deep.equal({ foo: 'bar', bar: 'fooooooo' });
     });
   });
 });
 
-after(function() {
+after(() => {
   benv.teardown();
 });

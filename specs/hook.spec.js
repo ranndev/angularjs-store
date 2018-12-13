@@ -1,12 +1,14 @@
+/* eslint-disable no-new */
+
 import Hook from 'src/models/hook';
 import State from 'src/models/state';
-import {expect} from 'chai';
+import { expect } from 'chai';
 import benv from 'benv';
 
-before(function(done) {
-  benv.setup(function() {
+before((done) => {
+  benv.setup(() => {
     benv.expose({
-      angular: benv.require('../../node_modules/angular/angular.js', 'angular')
+      angular: benv.require('../../node_modules/angular/angular.js', 'angular'),
     });
 
     done();
@@ -19,10 +21,10 @@ describe('Hook', () => {
   });
 
   it('should only call with a \'new\' keyword', () => {
-    const noop = angular.noop;
+    const { noop } = angular;
 
-    expect(() => { Hook(noop, [noop]) }).to.throw();
-    expect(() => { new Hook(noop, [noop]) }).to.not.throw();
+    expect(() => { Hook(noop, [noop]); }).to.throw();
+    expect(() => { new Hook(noop, [noop]); }).to.not.throw();
   });
 
   context('instance', () => {
@@ -51,10 +53,10 @@ describe('Hook', () => {
       let reducersCalledCount = 0;
       const test = () => true;
       const reducersCount = 3;
-      const reducer = () => { reducersCalledCount++ };
+      const reducer = () => { reducersCalledCount += 1; };
       const reducers = [];
 
-      for (let i = 0; i < reducersCount; i++) {
+      for (let i = 0; i < reducersCount; i += 1) {
         reducers.push(reducer);
       }
 
@@ -70,10 +72,10 @@ describe('Hook', () => {
       let reducersCalledCount = 0;
       const test = () => false;
       const reducersCount = 3;
-      const reducer = () => { reducersCalledCount++ };
+      const reducer = () => { reducersCalledCount += 1; };
       const reducers = [];
 
-      for (let i = 0; i < reducersCount; i++) {
+      for (let i = 0; i < reducersCount; i += 1) {
         reducers.push(reducer);
       }
 
@@ -89,11 +91,11 @@ describe('Hook', () => {
       let reducersCalledCount = 0;
       const test = () => false;
       const reducersCount = 3;
-      const reducer = () => { reducersCalledCount++ };
+      const reducer = () => { reducersCalledCount += 1; };
       const reducers = [];
       const isForce = true;
 
-      for (let i = 0; i < reducersCount; i++) {
+      for (let i = 0; i < reducersCount; i += 1) {
         reducers.push(reducer);
       }
 
@@ -107,6 +109,6 @@ describe('Hook', () => {
   });
 });
 
-after(function() {
+after(() => {
   benv.teardown();
 });

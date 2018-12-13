@@ -1,5 +1,3 @@
-import State from 'src/models/state';
-
 class Hook {
   /**
    * @constructor
@@ -23,10 +21,11 @@ class Hook {
    */
   attemptRun(action, state, isForce = false) {
     if (isForce || this.test(action)) {
-      state = state.get();
+      let stateData = state.get();
 
-      for (let i = 0; i < this.reducers.length; i++) {
-        state = this.reducers[i](state, ++this.calls);
+      for (let i = 0; i < this.reducers.length; i += 1) {
+        this.calles += 1;
+        stateData = this.reducers[i](stateData, this.calls);
       }
     }
   }

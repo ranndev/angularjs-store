@@ -1,12 +1,14 @@
+/* eslint-disable no-new */
+
 import NgStore from 'src/angularjs-store';
 import HookLink from 'src/models/hook-link';
-import {expect} from 'chai';
+import { expect } from 'chai';
 import benv from 'benv';
 
-before(function(done) {
-  benv.setup(function() {
+before((done) => {
+  benv.setup(() => {
     benv.expose({
-      angular: benv.require('../../node_modules/angular/angular.js', 'angular')
+      angular: benv.require('../../node_modules/angular/angular.js', 'angular'),
     });
 
     done();
@@ -19,19 +21,19 @@ describe('NgStore', () => {
   });
 
   it('should only call with a \'new\' keyword', () => {
-    expect(() => { NgStore({}) }).to.throw();
-    expect(() => { new NgStore({}) }).to.not.throw();
+    expect(() => { NgStore({}); }).to.throw();
+    expect(() => { new NgStore({}); }).to.not.throw();
   });
 
   it('should require the first parameter (initialState) to be an object', () => {
-    expect(() => { new NgStore() }).to.throw();
-    expect(() => { new NgStore(null) }).to.throw();
-    expect(() => { new NgStore(true) }).to.throw();
-    expect(() => { new NgStore('foo') }).to.throw();
-    expect(() => { new NgStore(123) }).to.throw();
-    expect(() => { new NgStore(function () {}) }).to.throw();
-    expect(() => { new NgStore([]) }).to.throw();
-    expect(() => { new NgStore({}) }).to.not.throw();
+    expect(() => { new NgStore(); }).to.throw();
+    expect(() => { new NgStore(null); }).to.throw();
+    expect(() => { new NgStore(true); }).to.throw();
+    expect(() => { new NgStore('foo'); }).to.throw();
+    expect(() => { new NgStore(123); }).to.throw();
+    expect(() => { new NgStore((() => {})); }).to.throw();
+    expect(() => { new NgStore([]); }).to.throw();
+    expect(() => { new NgStore({}); }).to.not.throw();
   });
 
   context('instance', () => {
@@ -59,7 +61,7 @@ describe('NgStore', () => {
 
   context('copy method', () => {
     it('should return a new copy of state', () => {
-      const initialState = {foo: 'bar'};
+      const initialState = { foo: 'bar' };
       const store = new NgStore(initialState);
 
       expect(store.copy()).to.not.equal(initialState);
@@ -67,7 +69,7 @@ describe('NgStore', () => {
     });
 
     it('should return a specific state property if stateProp is provided', () => {
-      const store = new NgStore({foo: 'bar'});
+      const store = new NgStore({ foo: 'bar' });
 
       expect(store.copy('foo')).to.equal('bar');
     });
@@ -75,34 +77,34 @@ describe('NgStore', () => {
 
   context('hook method', () => {
     it('should require first parameter (actionQuery) to be either a string, array of string or regexp', () => {
-      const store = new NgStore({foo: 'bar'});
+      const store = new NgStore({ foo: 'bar' });
 
-      expect(() => { store.hook(undefined, angular.noop) }).to.throw();
-      expect(() => { store.hook(null, angular.noop) }).to.throw();
-      expect(() => { store.hook(true, angular.noop) }).to.throw();
-      expect(() => { store.hook(123, angular.noop) }).to.throw();
-      expect(() => { store.hook('ACTION', angular.noop) }).to.not.throw();
-      expect(() => { store.hook(['ACTION_1', 'ACTION_2'], angular.noop) }).to.not.throw();
-      expect(() => { store.hook(/^ACTION_(1|2)$/, angular.noop) }).to.not.throw();
+      expect(() => { store.hook(undefined, angular.noop); }).to.throw();
+      expect(() => { store.hook(null, angular.noop); }).to.throw();
+      expect(() => { store.hook(true, angular.noop); }).to.throw();
+      expect(() => { store.hook(123, angular.noop); }).to.throw();
+      expect(() => { store.hook('ACTION', angular.noop); }).to.not.throw();
+      expect(() => { store.hook(['ACTION_1', 'ACTION_2'], angular.noop); }).to.not.throw();
+      expect(() => { store.hook(/^ACTION_(1|2)$/, angular.noop); }).to.not.throw();
     });
 
     it('should require the remaining parameter (reducers) to be all function', () => {
-      const store = new NgStore({foo: 'bar'});
+      const store = new NgStore({ foo: 'bar' });
 
-      expect(() => { store.hook('ACTION') }).to.throw();
-      expect(() => { store.hook('ACTION', null) }).to.throw();
-      expect(() => { store.hook('ACTION', true) }).to.throw();
-      expect(() => { store.hook('ACTION', 'foo') }).to.throw();
-      expect(() => { store.hook('ACTION', 123) }).to.throw();
-      expect(() => { store.hook('ACTION', []) }).to.throw();
-      expect(() => { store.hook('ACTION', {}) }).to.throw();
-      expect(() => { store.hook('ACTION', function () {}, null) }).to.throw();
-      expect(() => { store.hook('ACTION', function () {}) }).to.not.throw();
-      expect(() => { store.hook('ACTION', function () {}, function () {}) }).to.not.throw();
+      expect(() => { store.hook('ACTION'); }).to.throw();
+      expect(() => { store.hook('ACTION', null); }).to.throw();
+      expect(() => { store.hook('ACTION', true); }).to.throw();
+      expect(() => { store.hook('ACTION', 'foo'); }).to.throw();
+      expect(() => { store.hook('ACTION', 123); }).to.throw();
+      expect(() => { store.hook('ACTION', []); }).to.throw();
+      expect(() => { store.hook('ACTION', {}); }).to.throw();
+      expect(() => { store.hook('ACTION', () => {}, null); }).to.throw();
+      expect(() => { store.hook('ACTION', () => {}); }).to.not.throw();
+      expect(() => { store.hook('ACTION', () => {}, () => {}); }).to.not.throw();
     });
 
     it('should return a HookLink instance', () => {
-      const store = new NgStore({foo: 'bar'});
+      const store = new NgStore({ foo: 'bar' });
 
       expect(store.hook('ACTION', angular.noop)).to.be.an.instanceof(HookLink);
     });
@@ -110,35 +112,35 @@ describe('NgStore', () => {
 
   context('dispatch method', () => {
     it('should require first parameter (action) to a string', () => {
-      const store = new NgStore({foo: 'bar'});
+      const store = new NgStore({ foo: 'bar' });
 
-      expect(() => { store.dispatch(undefined, {}) }).to.throw();
-      expect(() => { store.dispatch(null, {}) }).to.throw();
-      expect(() => { store.dispatch(true, {}) }).to.throw();
-      expect(() => { store.dispatch(123, {}) }).to.throw();
-      expect(() => { store.dispatch({}, {}) }).to.throw();
-      expect(() => { store.dispatch([], {}) }).to.throw();
-      expect(() => { store.dispatch(function () {}, {}) }).to.throw();
-      expect(() => { store.dispatch('ACTION', {}) }).to.not.throw();
+      expect(() => { store.dispatch(undefined, {}); }).to.throw();
+      expect(() => { store.dispatch(null, {}); }).to.throw();
+      expect(() => { store.dispatch(true, {}); }).to.throw();
+      expect(() => { store.dispatch(123, {}); }).to.throw();
+      expect(() => { store.dispatch({}, {}); }).to.throw();
+      expect(() => { store.dispatch([], {}); }).to.throw();
+      expect(() => { store.dispatch(() => {}, {}); }).to.throw();
+      expect(() => { store.dispatch('ACTION', {}); }).to.not.throw();
     });
 
     it('should require the second parameter (newState) to be either an object or function', () => {
-      const store = new NgStore({foo: 'bar'});
+      const store = new NgStore({ foo: 'bar' });
 
-      expect(() => { store.dispatch('ACTION') }).to.throw();
-      expect(() => { store.dispatch('ACTION', null) }).to.throw();
-      expect(() => { store.dispatch('ACTION', true) }).to.throw();
-      expect(() => { store.dispatch('ACTION', 'foo') }).to.throw();
-      expect(() => { store.dispatch('ACTION', 123) }).to.throw();
-      expect(() => { store.dispatch('ACTION', []) }).to.throw();
-      expect(() => { store.dispatch('ACTION', {}) }).to.not.throw();
-      expect(() => { store.dispatch('ACTION', function () {}) }).to.not.throw();
+      expect(() => { store.dispatch('ACTION'); }).to.throw();
+      expect(() => { store.dispatch('ACTION', null); }).to.throw();
+      expect(() => { store.dispatch('ACTION', true); }).to.throw();
+      expect(() => { store.dispatch('ACTION', 'foo'); }).to.throw();
+      expect(() => { store.dispatch('ACTION', 123); }).to.throw();
+      expect(() => { store.dispatch('ACTION', []); }).to.throw();
+      expect(() => { store.dispatch('ACTION', {}); }).to.not.throw();
+      expect(() => { store.dispatch('ACTION', () => {}); }).to.not.throw();
     });
 
     it('should update the state', () => {
-      const initialState = {foo: 'bar'};
+      const initialState = { foo: 'bar' };
       const store = new NgStore(initialState);
-      const newState = {foo: 'foo', bar: 'bar'};
+      const newState = { foo: 'foo', bar: 'bar' };
 
       store.dispatch('UPDATE', newState);
 
@@ -149,7 +151,7 @@ describe('NgStore', () => {
     });
 
     it('should run all hooks by different actions', () => {
-      const initialState = {foo: 'bar', bar: 'foo'};
+      const initialState = { foo: 'bar', bar: 'foo' };
       const store = new NgStore(initialState);
       const initialRunCount = 1;
       const fooHookRunExpectedCount = 5;
@@ -160,22 +162,22 @@ describe('NgStore', () => {
       let foobarHookRunCount = 0;
 
       store.hook('UPDATE_FOO', () => {
-        fooHookRunCount++;
+        fooHookRunCount += 1;
       });
 
       store.hook('UPDATE_BAR', () => {
-        barHookRunCount++;
+        barHookRunCount += 1;
       });
 
       store.hook(/^UPDATE_(FOO|BAR)$/, () => {
-        foobarHookRunCount++;
+        foobarHookRunCount += 1;
       });
 
-      for (let i = 0; i < fooHookRunExpectedCount; i++) {
+      for (let i = 0; i < fooHookRunExpectedCount; i += 1) {
         store.dispatch('UPDATE_FOO', {});
       }
 
-      for (let i = 0; i < barHookRunExpectedCount; i++) {
+      for (let i = 0; i < barHookRunExpectedCount; i += 1) {
         store.dispatch('UPDATE_BAR', {});
       }
 
@@ -186,6 +188,6 @@ describe('NgStore', () => {
   });
 });
 
-after(function() {
+after(() => {
   benv.teardown();
 });

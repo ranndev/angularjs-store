@@ -15,9 +15,9 @@ class State {
   get(prop) {
     if (angular.isDefined(prop)) {
       return angular.copy(this.data[prop]);
-    } else {
-      return angular.copy(this.data);
     }
+
+    return angular.copy(this.data);
   }
 
   /**

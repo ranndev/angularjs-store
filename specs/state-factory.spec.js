@@ -1,12 +1,14 @@
+/* eslint-disable no-new */
+
 import StateFactory from 'src/models/state-factory';
 import State from 'src/models/state';
-import {expect} from 'chai';
+import { expect } from 'chai';
 import benv from 'benv';
 
-before(function(done) {
-  benv.setup(function() {
+before((done) => {
+  benv.setup(() => {
     benv.expose({
-      angular: benv.require('../../node_modules/angular/angular.js', 'angular')
+      angular: benv.require('../../node_modules/angular/angular.js', 'angular'),
     });
 
     done();
@@ -19,8 +21,8 @@ describe('StateFactory', () => {
   });
 
   it('should only call with a \'new\' keyword', () => {
-    expect(() => { StateFactory() }).to.throw();
-    expect(() => { new StateFactory() }).to.not.throw();
+    expect(() => { StateFactory(); }).to.throw();
+    expect(() => { new StateFactory(); }).to.not.throw();
   });
 
   context('instance', () => {
@@ -44,10 +46,12 @@ describe('StateFactory', () => {
       const factory = new StateFactory();
       const storeId = 1;
 
+      // eslint-disable-next-line no-unused-expressions
       expect(factory.storesState[storeId]).to.be.undefined;
 
       factory.register(storeId);
 
+      // eslint-disable-next-line no-unused-expressions
       expect(factory.storesState[storeId]).to.be.ok;
       expect(factory.storesState[storeId]).to.be.an.instanceof(State);
     });
@@ -65,6 +69,6 @@ describe('StateFactory', () => {
   });
 });
 
-after(function() {
+after(() => {
   benv.teardown();
 });

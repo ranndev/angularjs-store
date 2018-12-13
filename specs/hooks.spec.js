@@ -1,14 +1,16 @@
+/* eslint-disable no-new */
+
 import Hooks from 'src/models/hooks';
 import Hook from 'src/models/hook';
 import HookLink from 'src/models/hook-link';
 import State from 'src/models/state';
-import {expect} from 'chai';
+import { expect } from 'chai';
 import benv from 'benv';
 
-before(function(done) {
-  benv.setup(function() {
+before((done) => {
+  benv.setup(() => {
     benv.expose({
-      angular: benv.require('../../node_modules/angular/angular.js', 'angular')
+      angular: benv.require('../../node_modules/angular/angular.js', 'angular'),
     });
 
     done();
@@ -21,8 +23,8 @@ describe('Hooks', () => {
   });
 
   it('should only call with a \'new\' keyword', () => {
-    expect(() => { Hooks() }).to.throw();
-    expect(() => { new Hooks() }).to.not.throw();
+    expect(() => { Hooks(); }).to.throw();
+    expect(() => { new Hooks(); }).to.not.throw();
   });
 
   context('instance', () => {
@@ -36,6 +38,7 @@ describe('Hooks', () => {
     it('should have an initial empty array hooks', () => {
       const hooks = new Hooks();
 
+      // eslint-disable-next-line no-unused-expressions
       expect(hooks.hooks).to.be.an('array').that.is.an.empty;
     });
 
@@ -75,10 +78,10 @@ describe('Hooks', () => {
     it('should attempt to run all hooks', () => {
       let hookRunAttempts = 0;
       const expectedRunAttempts = 3;
-      const reducerStub = () => { hookRunAttempts++ };
+      const reducerStub = () => { hookRunAttempts += 1; };
       const hooks = new Hooks();
 
-      for (let i = 0; i < expectedRunAttempts; i++) {
+      for (let i = 0; i < expectedRunAttempts; i += 1) {
         hooks.addHook(() => true, [reducerStub], new State({}));
       }
 
@@ -87,6 +90,6 @@ describe('Hooks', () => {
   });
 });
 
-after(function() {
+after(() => {
   benv.teardown();
 });

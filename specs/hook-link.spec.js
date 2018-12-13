@@ -1,11 +1,13 @@
+/* eslint-disable no-new */
+
 import HookLink from 'src/models/hook-link';
-import {expect} from 'chai';
+import { expect } from 'chai';
 import benv from 'benv';
 
-before(function(done) {
-  benv.setup(function() {
+before((done) => {
+  benv.setup(() => {
     benv.expose({
-      angular: benv.require('../../node_modules/angular/angular.js', 'angular')
+      angular: benv.require('../../node_modules/angular/angular.js', 'angular'),
     });
 
     done();
@@ -18,20 +20,20 @@ describe('HookLink', () => {
   });
 
   it('should only call with a \'new\' keyword', () => {
-    const noop = angular.noop;
+    const { noop } = angular;
 
-    expect(() => { HookLink(noop) }).to.throw();
-    expect(() => { new HookLink(noop) }).to.not.throw();
+    expect(() => { HookLink(noop); }).to.throw();
+    expect(() => { new HookLink(noop); }).to.not.throw();
   });
 
   it('should require first parameter to be a function', () => {
-    expect(() => { new HookLink() }).to.throw();
-    expect(() => { new HookLink(null) }).to.throw();
-    expect(() => { new HookLink(undefined) }).to.throw();
-    expect(() => { new HookLink(true) }).to.throw();
-    expect(() => { new HookLink('foo') }).to.throw();
-    expect(() => { new HookLink(123) }).to.throw();
-    expect(() => { new HookLink(function () {}) }).to.not.throw();
+    expect(() => { new HookLink(); }).to.throw();
+    expect(() => { new HookLink(null); }).to.throw();
+    expect(() => { new HookLink(undefined); }).to.throw();
+    expect(() => { new HookLink(true); }).to.throw();
+    expect(() => { new HookLink('foo'); }).to.throw();
+    expect(() => { new HookLink(123); }).to.throw();
+    expect(() => { new HookLink((() => {})); }).to.not.throw();
   });
 
   context('instance', () => {
@@ -53,39 +55,41 @@ describe('HookLink', () => {
   context('destroy method', () => {
     it('should call the destroyer function', () => {
       let isDestroyerCalled = false;
-      const destroyer = () => { isDestroyerCalled = true }
+      const destroyer = () => { isDestroyerCalled = true; };
       const hookLink = new HookLink(destroyer);
 
       hookLink.destroy();
 
+      // eslint-disable-next-line no-unused-expressions
       expect(isDestroyerCalled).to.be.true;
     });
   });
 
   context('destroyOn method', () => {
     it('should call the destroyer function after scope $destroy is triggered', () => {
-      let scopeStub = {
+      const scopeStub = {
         hookLinkDestroyer: null,
         triggerDestroy() {
           this.hookLinkDestroyer();
         },
         $on(event, callback) {
           this.hookLinkDestroyer = callback;
-        }
-      }
+        },
+      };
 
       let isDestroyerCalled = false;
-      const destroyer = () => { isDestroyerCalled = true }
+      const destroyer = () => { isDestroyerCalled = true; };
       const hookLink = new HookLink(destroyer);
 
       hookLink.destroyOn(scopeStub);
       scopeStub.triggerDestroy();
 
+      // eslint-disable-next-line no-unused-expressions
       expect(isDestroyerCalled).to.be.true;
     });
   });
 });
 
-after(function() {
+after(() => {
   benv.teardown();
 });
