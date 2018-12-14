@@ -1,8 +1,6 @@
----
-description: A class for creating stores.
----
-
 # NgStore
+
+A class for creating stores.
 
 #### @parameters
 

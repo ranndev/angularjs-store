@@ -1,8 +1,6 @@
----
-description: Get a copy of current state.
----
-
 # copy
+
+Get a copy of current state.
 
 #### @parameters
 

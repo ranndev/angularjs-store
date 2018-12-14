@@ -1,8 +1,6 @@
----
-description: Listen to certain dispatched action.
----
-
 # hook
+
+Listen to certain dispatched action.
 
 **@paramaters**
 

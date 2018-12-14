@@ -1,8 +1,6 @@
----
-description: Send an update to store.
----
-
 # dispatch
+
+Send an update to store.
 
 **@parameters**
 
