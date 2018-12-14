@@ -2,13 +2,13 @@
 
 A class for creating stores.
 
-#### @parameters
+**@parameters**
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
 | _**initialState**_ | `object` | Initial state of store. |
 
-#### @return
+**@return**
 
 `NgStore` instance.
 

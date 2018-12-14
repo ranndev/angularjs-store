@@ -2,7 +2,7 @@
 
 Get a copy of current state.
 
-#### @parameters
+**@parameters**
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
