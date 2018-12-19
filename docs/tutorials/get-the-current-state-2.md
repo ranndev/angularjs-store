@@ -61,5 +61,7 @@ angular
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
+> **Note:** All the returned data by the [`copy`](../api-reference/copy.md) method are just only a state copy. Any changes to that copy does not reflect to other copy and most importantly, it does not reflect to the original state in the store.
+
 
 

@@ -1,30 +1,55 @@
 # Update the state
 
-In AngularJS Store, updating a state is same as dispatching an action. Whenever we send an update, it should have a label or the action name.
+In AngularJS Store, updating a state is same as dispatching an action. Whenever we send an update to the store, it should have a label or the action name \(later we are going to see the purpose of action name on updating state\).
 
-In this example, we have a component named `ComponentB` which then inject the `CounterStore` and dispatch an action \(`INCREMENT_COUNT` and `DECREMENT_COUNT`\) to increment and decrement the state `count`. Here we are going to use the store `dispatch` method \(See [`dispatch` documentation](../api-reference/dispatch.md)\).
+Store state are immutable. There are no way to update the state directly. The only solution to do that is by using the [`dispatch`](../api-reference/dispatch.md) method of store. In this example we are going to dispatch an action \(`INCREMENT_COUNT` and `DECREMENT_COUNT`\) to increment and decrement the state `count`.
 
+{% code-tabs %}
+{% code-tabs-item title="controller-b.js" %}
 ```javascript
-function ComponentB(CounterStore) {
-  // Option 1
-  // Using object
-  let count;
-
-  count = CounterStore.copy('count');
-  CounterStore.dispatch('INCREMENT_COUNT', {count: count + 1});
-
-  count = CounterStore.copy('count');
-  CounterStore.dispatch('DECREMENT_COUNT', {count: count - 1});
-
-  // Option 2
-  // Using callback function
-  CounterStore.dispatch('INCREMENT_COUNT', ({count}) => {
-    return {count: count + 1};
+angular
+  .module('App', [])
+  .controller('ControllerB', function ControllerB($scope, CounterStore) {
+    let currentCount;
+    
+    currentCount = CounterStore.copy('count');
+    CounterStore.dispatch('INCREMENT_COUNT', {
+      count: currentCount + 1;
+    });
+    
+    currentCount = CounterStore.copy('count');
+    CounterStore.dispatch('DECREMENT_COUNT', {
+      count: currentCount - 1;
+    });
   });
-
-  CounterStore.dispatch('DECREMENT_COUNT', ({count}) => {
-    return {count: count - 1};
-  });
-}
 ```
+{% endcode-tabs-item %}
+
+{% code-tabs-item title="controller-a.js" %}
+```javascript
+angular
+  .module('App', [])
+  .controller('ControllerA', function ControllerA($scope, CounterStore) {
+    $scope.count = CounterStore.copy('copy');
+  });
+```
+{% endcode-tabs-item %}
+
+{% code-tabs-item title="counter-store.js" %}
+```javascript
+import NgStore from 'angularjs-store';
+
+angular
+  .module('App', [])
+  .factory('CounterStore', function CounterStore() {
+    const initialState = { count: 0 };
+    const counterStore = new NgStore(initialState);
+
+    return counterStore;
+  });
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+
 
