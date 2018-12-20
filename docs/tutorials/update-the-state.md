@@ -9,7 +9,7 @@ Store state are immutable. There are no way to update the state directly. The on
 ```javascript
 angular
   .module('App', [])
-  .controller('ControllerB', function ControllerB($scope, CounterStore) {
+  .controller('ControllerB', function ControllerB(CounterStore) {
     let currentCount;
     
     currentCount = CounterStore.copy('count');
@@ -50,6 +50,35 @@ angular
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}
+
+As we can notice in the above example, every time we dispatch or update the state we get first the current value of `count` and store it to `currentCount`. We need that because our update is based on the current state.
+
+`dispatch` has a way to easily do that by using `function` as a second parameter. We can get the current state from this function on its first  argument. The function should be return an `object` or the update for state.
+
+```javascript
+angular
+  .module('App', [])
+  .controller('ControllerB', function ControllerB(CounterStore) {
+    CounterStore.dispatch('INCREMENT_COUNT', function (state) {
+      return {count: state.count + 1};
+    });
+
+    CounterStore.dispatch('DECREMENT_COUNT', function (state) {
+      return {count: state.count - 1};
+    });
+  });
+```
+
+Or a more simplified way using ES6 fat arrow and destructuring.
+
+```javascript
+angular
+  .module('App', [])
+  .controller('ControllerB', function ControllerB(CounterStore) {
+    CounterStore.dispatch('INCREMENT_COUNT', ({count}) => ({count: count + 1}));
+    CounterStore.dispatch('DECREMENT_COUNT', ({count}) => ({count: count - 1}));
+  });
+```
 
 
 
