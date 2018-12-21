@@ -1,6 +1,7 @@
 # Table of contents
 
 * [Introduction](README.md)
+* [Installation](installation.md)
 * [Tutorials](tutorials/README.md)
   * [Setup a store](tutorials/setup-a-store.md)
   * [Get the current state](tutorials/get-the-current-state-2.md)
