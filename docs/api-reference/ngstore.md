@@ -10,7 +10,9 @@ A class for creating stores.
 
 **@return**
 
-`NgStore` instance.
+| Type | Description |
+| :--- | :--- |
+| `NgStore` | New `NgStore` instance. |
 
 #### Examples:
 

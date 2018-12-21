@@ -10,7 +10,9 @@ Get a copy of current state.
 
 **@return**
 
-New copy of state.
+| Type | Description |
+| :--- | :--- |
+| `any` | New copy of state or property of state. |
 
 **Examples:**
 

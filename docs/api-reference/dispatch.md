@@ -11,7 +11,9 @@ Send an update to store.
 
 **@return**
 
-none.
+| Type | Description |
+| :--- | :--- |
+| `undefined` |  |
 
 **Examples:**
 

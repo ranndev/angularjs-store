@@ -11,7 +11,9 @@ Listen to certain dispatched action.
 
 **@return**
 
-_HookLink instance_ - it has a `destroy` and `destroyOn` method for removing the hook from store.
+| Type | Description |
+| :--- | :--- |
+| `HookLink` | `HookLink` instance, can be used for removing the hook from store. |
 
 **Examples:**
 
