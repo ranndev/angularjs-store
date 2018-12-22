@@ -2,8 +2,9 @@
 
 AngularJS Store will guide you to create a one way data flow in your application (Single Source of Truth). Manage your AngularJS application state into a very predicable way.
 
-[![Open Source Love](https://badges.frapsoft.com/os/mit/mit.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+![](https://img.shields.io/github/license/rannie-peralta/angularjs-store.svg)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
+[![Build Status](https://travis-ci.com/rannie-peralta/angularjs-store.svg?branch=master)](https://travis-ci.com/rannie-peralta/angularjs-store)
 
 [![NPM](https://nodei.co/npm/angularjs-store.png)](https://nodei.co/npm/angularjs-store/)
 
