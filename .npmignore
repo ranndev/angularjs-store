@@ -6,7 +6,8 @@ specs
 src
 .babelrc
 .eslintrc
-.gitbook.yaml
+.gitbook.yml
+.travis.yml
 webpack.*
 yarn-error.log
 yarn.lock

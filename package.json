@@ -4,6 +4,7 @@
   "description": "A tools to easily manage your state in AngularJS Application",
   "main": "lib/angularjs-store.js",
   "scripts": {
+    "prepublish": "npm run build",
     "build": "webpack --config webpack.lib.js",
     "build:demo": "webpack --config webpack.demo.prod.js",
     "build:docs": "gitbook build ./docs",
