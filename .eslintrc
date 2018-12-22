@@ -11,7 +11,10 @@
   "settings": {
     "import/resolver": {
       "alias": {
-        "map": [["src", "./src"]]
+        "map": [
+          ["src", "./src"],
+          ["lib", "./lib"]
+        ]
       },
       "extensions": [".js"]
     }

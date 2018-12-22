@@ -5,7 +5,7 @@ class Controller {
     this.logger = StoreLogger.create('Group A - Component A');
     this.store = GroupAStore;
 
-    this.store.hook(/^UPDATE_(B|C)/, ({stateA, ...otherStates}, calls) => {
+    this.store.hook(/^UPDATE_(B|C)/, ({ stateA, ...otherStates }) => {
       this.logger.logHook();
       this.state = stateA;
       this.otherStates = otherStates;
@@ -18,14 +18,14 @@ class Controller {
 
       this.logger.logDispatch(action);
       this.store.dispatch(action, {
-        stateA: this.state
+        stateA: this.state,
       });
     }
   }
 }
 
 export default {
-  template: template,
+  template,
   controller: ['$scope', 'StoreLogger', 'GroupAStore', Controller],
-  controllerAs: 'groupAComponentA'
-}
+  controllerAs: 'groupAComponentA',
+};

@@ -9,4 +9,3 @@ angular
   .component('groupAComponentA', groupAComponentA)
   .component('groupAComponentB', groupAComponentB)
   .component('groupAComponentC', groupAComponentC);
-  

@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 function StoreLogger() {
   class Logger {
     constructor(name) {
@@ -10,14 +12,14 @@ function StoreLogger() {
     }
 
     logHook() {
-      console.log(`${this.name}: Action query passed! Running hook...`); 
+      console.log(`${this.name}: Action query passed! Running hook...`);
     }
   }
 
   return {
-    create: function (name) {
+    create(name) {
       return new Logger(name);
-    }
+    },
   };
 }
 

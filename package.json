@@ -1,15 +1,15 @@
 {
   "name": "angularjs-store",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "A tools to easily manage your state in AngularJS Application",
-  "main": "src/angularjs-store.js",
+  "main": "lib/angularjs-store.js",
   "scripts": {
-    "build:demo": "webpack --config webpack.demo.prod.js",
-    "build:docs": "gitbook build ./docs",
-    "serve:demo": "webpack-dev-server --config webpack.demo.dev.js",
-    "serve:docs": "gitbook serve ./docs",
+    "prepublishOnly": "npm run build",
+    "build": "webpack --config webpack.lib.js",
+    "build:demo": "npm run build && webpack --config webpack.demo.prod.js",
+    "serve:demo": "npm run build && webpack-dev-server --config webpack.demo.dev.js",
     "test": "mocha-webpack --webpack-config webpack.test.js \"specs/*.spec.js\"",
-    "test:watch": "mocha-webpack --webpack-config webpack.test.js --watch \"specs/*.spec.js\""
+    "test:watch": "mocha-webpack --webpack-config webpack.test-watch.js --watch \"specs/*.spec.js\""
   },
   "repository": {
     "type": "git",

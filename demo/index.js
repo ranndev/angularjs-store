@@ -9,5 +9,5 @@ angular
   .module('app', [
     'app.services',
     'app.stores',
-    'app.components'
+    'app.components',
   ]);

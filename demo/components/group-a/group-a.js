@@ -12,7 +12,7 @@ class Controller {
 }
 
 export default {
-  template: template,
+  template,
   controller: ['$scope', 'StoreLogger', 'GroupAStore', Controller],
-  controllerAs: 'groupA'
-}
+  controllerAs: 'groupA',
+};
