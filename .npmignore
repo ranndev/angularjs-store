@@ -5,6 +5,7 @@ node_modules
 specs
 src
 .babelrc
+.eslintignore
 .eslintrc
 .gitbook.yml
 .travis.yml
