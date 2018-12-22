@@ -1,5 +1,12 @@
-node_modules
+.vscode
 demo
 docs
-spec
+node_modules
+specs
+src
+.babelrc
+.eslintrc
+.gitbook.yaml
+webpack.*
 yarn-error.log
+yarn.lock

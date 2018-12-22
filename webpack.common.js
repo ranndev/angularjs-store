@@ -13,7 +13,7 @@ module.exports = {
     }],
   },
   resolve: {
-    alias: {src: path.resolve(__dirname, 'src')},
+    alias: { src: path.resolve(__dirname, 'src') },
     modules: ['node_modules'],
   },
 };

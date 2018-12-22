@@ -1,8 +1,10 @@
-const config = require('./webpack.config');
+/* eslint-disable import/no-extraneous-dependencies */
+
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const config = require('./webpack.common');
 
 module.exports = Object.assign(config, {
   mode: 'production',
@@ -24,7 +26,7 @@ module.exports = Object.assign(config, {
         'css-loader',
         {
           loader: 'sass-loader',
-          options: {outputStyle: 'compressed'},
+          options: { outputStyle: 'compressed' },
         },
       ],
     }, {
@@ -33,7 +35,7 @@ module.exports = Object.assign(config, {
     }],
   },
   resolve: {
-    alias: {src: path.resolve(__dirname, 'src')},
+    alias: { lib: path.resolve(__dirname, 'lib') },
     modules: ['node_modules'],
     extensions: ['.js', '.scss'],
   },

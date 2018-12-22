@@ -1,4 +1,4 @@
-import NgStore from 'src/angularjs-store';
+import NgStore from 'lib/angularjs-store';
 
 function GroupAStore() {
   const store = new NgStore({
@@ -6,6 +6,8 @@ function GroupAStore() {
     stateB: {name: 'B', value: 'Ball'},
     stateC: {name: 'C', value: 'Cat'},
   });
+
+  console.log(store.constructor.name)
 
   return store;
 }
