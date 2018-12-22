@@ -6,10 +6,8 @@
   "scripts": {
     "prepublishOnly": "npm run build",
     "build": "webpack --config webpack.lib.js",
-    "build:demo": "webpack --config webpack.demo.prod.js",
-    "build:docs": "gitbook build ./docs",
-    "serve:demo": "webpack-dev-server --config webpack.demo.dev.js",
-    "serve:docs": "gitbook serve ./docs",
+    "build:demo": "npm run build && webpack --config webpack.demo.prod.js",
+    "serve:demo": "npm run build && webpack-dev-server --config webpack.demo.dev.js",
     "test": "mocha-webpack --webpack-config webpack.test.js \"specs/*.spec.js\"",
     "test:watch": "mocha-webpack --webpack-config webpack.test-watch.js --watch \"specs/*.spec.js\""
   },
