@@ -2,6 +2,7 @@
 
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const config = require('./webpack.common');
 
 module.exports = Object.assign(config, {
@@ -10,7 +11,7 @@ module.exports = Object.assign(config, {
   output: {
     path: path.resolve(__dirname, 'lib'),
     filename: 'angularjs-store.js',
-    library: 'angularjs-store',
+    library: 'NgStore',
     libraryTarget: 'umd',
   },
   resolve: {
@@ -19,4 +20,11 @@ module.exports = Object.assign(config, {
   plugins: [
     new CleanWebpackPlugin(['lib']),
   ],
+  optimization: {
+    minimizer: [new UglifyJsPlugin({
+      uglifyOptions: {
+        mangle: { reserved: ['NgStore'] },
+      },
+    })],
+  },
 });
