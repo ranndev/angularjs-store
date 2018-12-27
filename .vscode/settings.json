@@ -2,6 +2,5 @@
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
   "files.insertFinalNewline": true,
-  "files.eol": "\r\n",
-  "eslint.enable": true
+  "files.eol": "\n"
 }
