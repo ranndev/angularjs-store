@@ -1,4 +1,4 @@
-import NgStore from 'lib/angularjs-store';
+import NgStore from 'lib';
 
 function GroupAStore() {
   const store = new NgStore({

@@ -13,7 +13,7 @@
       "alias": {
         "map": [
           ["src", "./src"],
-          ["lib", "./lib"]
+          ["lib", "./lib/angularjs-store.min.js"]
         ]
       },
       "extensions": [".js"]
