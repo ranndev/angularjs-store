@@ -3,8 +3,9 @@
 AngularJS Store will guide you to create a one way data flow in your application (Single Source of Truth). Manage your AngularJS application state into a very predicable way.
 
 ![](https://img.shields.io/github/license/rannie-peralta/angularjs-store.svg)
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/rannie-peralta/angularjs-store/issues)
 [![Build Status](https://travis-ci.com/rannie-peralta/angularjs-store.svg?branch=master)](https://travis-ci.com/rannie-peralta/angularjs-store)
+![](https://img.shields.io/snyk/vulnerabilities/github/rannie-peralta/angularjs-store.svg)
 
 [![NPM](https://nodei.co/npm/angularjs-store.png)](https://nodei.co/npm/angularjs-store/)
 
@@ -48,6 +49,11 @@ Via Yarn:
 
 ```
 yarn add angularjs-store
+```
+
+CDN:
+```html
+<script src="https://cdn.jsdelivr.net/npm/angularjs-store@2.0.4/lib/angularjs-store.js"></script>
 ```
 
 ## Tutorials and Examples

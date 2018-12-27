@@ -9,6 +9,7 @@ src
 .eslintrc
 .gitbook.yml
 .travis.yml
+gulpfile.js
 webpack.*
 yarn-error.log
 yarn.lock

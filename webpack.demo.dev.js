@@ -31,7 +31,7 @@ module.exports = Object.assign(config, {
     }],
   },
   resolve: {
-    alias: { lib: path.resolve(__dirname, 'lib') },
+    alias: { lib: path.resolve(__dirname, 'lib/angularjs-store.min.js') },
     modules: ['node_modules'],
     extensions: ['.js', '.scss'],
   },
