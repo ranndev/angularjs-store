@@ -16,6 +16,7 @@ const devConfig = Object.assign({}, config, {
     path: path.resolve(__dirname, 'lib'),
     filename: 'angularjs-store.js',
     library: 'NgStore',
+    libraryExport: 'default',
     libraryTarget: 'umd',
   },
   resolve: { modules: ['node_modules'] },
@@ -38,6 +39,7 @@ const prodConfig = Object.assign({}, devConfig, {
     path: path.resolve(__dirname, 'lib'),
     filename: 'angularjs-store.min.js',
     library: 'NgStore',
+    libraryExport: 'default',
     libraryTarget: 'umd',
   },
   optimization: {
