@@ -53,7 +53,7 @@ yarn add angularjs-store
 
 CDN:
 ```html
-<script src="https://cdn.jsdelivr.net/npm/angularjs-store@2.0.4/lib/angularjs-store.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/angularjs-store@2.0.5/lib/angularjs-store.min.js" integrity="sha256-D6tCzcJC7U7OxwdO4Pn/n4fAUuyG5KQ4sGHHEEeTQNI=" crossorigin="anonymous"></script>
 ```
 
 ## Tutorials and Examples
