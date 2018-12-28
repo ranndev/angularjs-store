@@ -88,7 +88,7 @@ describe('NgStore', () => {
       expect(() => { store.hook(/^ACTION_(1|2)$/, angular.noop); }).to.not.throw();
     });
 
-    it('should require the remaining parameter (reducers) to be all function', () => {
+    it('should require the second parameter (reducers) to be a function or array of function', () => {
       const store = new NgStore({ foo: 'bar' });
 
       expect(() => { store.hook('ACTION'); }).to.throw();
@@ -98,9 +98,9 @@ describe('NgStore', () => {
       expect(() => { store.hook('ACTION', 123); }).to.throw();
       expect(() => { store.hook('ACTION', []); }).to.throw();
       expect(() => { store.hook('ACTION', {}); }).to.throw();
-      expect(() => { store.hook('ACTION', () => {}, null); }).to.throw();
-      expect(() => { store.hook('ACTION', () => {}); }).to.not.throw();
-      expect(() => { store.hook('ACTION', () => {}, () => {}); }).to.not.throw();
+      expect(() => { store.hook('ACTION', [angular.noop, angular.noop, {}]); }).to.throw();
+      expect(() => { store.hook('ACTION', angular.noop); }).to.not.throw();
+      expect(() => { store.hook('ACTION', [angular.noop, angular.noop]); }).to.not.throw();
     });
 
     it('should return a HookLink instance', () => {
