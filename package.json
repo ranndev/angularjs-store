@@ -9,7 +9,7 @@
     "build:demo": "gulp build && webpack --config webpack.demo.prod.js",
     "serve:demo": "gulp build && webpack-dev-server --config webpack.demo.dev.js",
     "test": "mocha-webpack --webpack-config webpack.test.js \"specs/*.spec.js\"",
-    "test:watch": "mocha-webpack --webpack-config webpack.test-watch.js --watch \"specs/*.spec.js\""
+    "test:watch": "mocha-webpack --webpack-config webpack.test.js --watch \"specs/*.spec.js\""
   },
   "repository": {
     "type": "git",
