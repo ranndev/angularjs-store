@@ -1,26 +1,44 @@
 # Stop from receiving notifications
 
-Whenever we add a hook in the store it will always return a `HookLink` instance that represents the link between the hook and the store. If we want to stop our hooks from receiving a dispatched action, we can use that `HookLink` instance. It has two methods: `destroy` which we can use for manual destroying and `destroyOn` for auto destroying of hooks. After the hook destroyed it will no longer receive any dispatched action from store.
+Whenever we add a hook in the store it always return a `HookLink` instance that represents the link between the hook and the store. We can use it to stop our hook from getting notified on any dispatched action.
 
-Let's see how to use that methods in this example.
+In this example we use the `destroy` method to manually destroy the hook when it reach its 3rd invocation.
 
+{% hint style="warning" %}
+`hookLink` is only available inside reducers after hook initial phase.
+{% endhint %}
+
+{% code-tabs %}
+{% code-tabs-item title="controller-d.js" %}
 ```javascript
-function ComponentC($scope, CounterStore) {
-  const hookLink = CounterStore.hook('INCREMENT_COUNT', (state) => {
-    $scope.count = state.count;
+angular
+  .module('App', [])
+  .controller('ControllerD', function ControllerD($scope, CounterStore) {
+    const hookLink = CounterStore.hook('INCREMENT_COUNT', (state, calls) => {
+      $scope.count = state.count;
+      
+      if (calls === 3) {
+        hookLink.destroy();
+      }
+    });
   });
-
-  // Manual Destroying
-  hookLink.destroy();
-
-  // Auto Destroying
-  // hookLink destroyed right after the $scope destroyed
-  hookLink.destroyOn($scope);
-
-  // Short syntax for auto destroying
-  CounterStore.hook('INCREMENT_COUNT', (state) => {
-    $scope.count = state.count;
-  }).destroyOn($scope);
-}
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+Another method of `HookLink` is `destroyOn`. This method is used for auto destroying of hook. It basically bind the hook to AngularJS scope so when the scope destroyed also hook is get destroyed. 
+
+{% code-tabs %}
+{% code-tabs-item title="controller-d.js" %}
+```javascript
+angular
+  .module('App', [])
+  .controller('ControllerD', function ControllerD($scope, CounterStore) {
+    CounterStore.hook('INCREMENT_COUNT', (state) => {
+      $scope.count = state.count;
+    }).destroyOn($scope);
+  });
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 

@@ -53,7 +53,7 @@ angular
 
 As we can notice in the above example, every time we dispatch or update the state we get first the current value of `count` and store it to `currentCount`. We need that because our update is based on the current state.
 
-`dispatch` has a way to easily do that by using `function` as a second parameter. We can get the current state from this function on its first  argument. The function should be return an `object` or the update for state.
+`dispatch` has a way to easily do that by using `function` as a second parameter. We can get the current state from this function first  argument. The function should be return an `object` or the update for state.
 
 ```javascript
 angular
