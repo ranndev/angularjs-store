@@ -1,5 +1,7 @@
 # AngularJS Store
 
+![AngularJS Store with AngularJS](./images/favicon-with-angularjs.png)
+
 AngularJS Store will guide you to create a one way data flow in your application (Single Source of Truth). Manage your AngularJS application state into a very predicable way.
 
 ![](https://img.shields.io/github/license/rannie-peralta/angularjs-store.svg)
