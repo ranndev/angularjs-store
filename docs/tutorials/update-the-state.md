@@ -30,6 +30,8 @@ As we can notice in the above example, every time we dispatch or update the stat
 
 `dispatch` has a way to easily do that by using `function` as a second parameter. We can get the current state from this function first  argument. The function should be return an `object` or the update for state.
 
+{% code-tabs %}
+{% code-tabs-item title="controller-b.js" %}
 ```javascript
 angular
   .module('App', [])
@@ -43,9 +45,13 @@ angular
     });
   });
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 Or a more simplified way using ES6 fat arrow and destructuring.
 
+{% code-tabs %}
+{% code-tabs-item title="controller-b.js" %}
 ```javascript
 angular
   .module('App', [])
@@ -59,4 +65,6 @@ angular
     }));
   });
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
