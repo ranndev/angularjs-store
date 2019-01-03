@@ -24,31 +24,6 @@ angular
   });
 ```
 {% endcode-tabs-item %}
-
-{% code-tabs-item title="controller-a.js" %}
-```javascript
-angular
-  .module('App', [])
-  .controller('ControllerA', function ControllerA($scope, CounterStore) {
-    $scope.count = CounterStore.copy('copy');
-  });
-```
-{% endcode-tabs-item %}
-
-{% code-tabs-item title="counter-store.js" %}
-```javascript
-import NgStore from 'angularjs-store';
-
-angular
-  .module('App', [])
-  .factory('CounterStore', function CounterStore() {
-    const initialState = { count: 0 };
-    const counterStore = new NgStore(initialState);
-
-    return counterStore;
-  });
-```
-{% endcode-tabs-item %}
 {% endcode-tabs %}
 
 As we can notice in the above example, every time we dispatch or update the state we get first the current value of `count` and store it to `currentCount`. We need that because our update is based on the current state.
@@ -84,6 +59,4 @@ angular
     }));
   });
 ```
-
-
 
