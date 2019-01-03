@@ -15,21 +15,6 @@ angular
   });
 ```
 {% endcode-tabs-item %}
-
-{% code-tabs-item title="counter-store.js" %}
-```javascript
-import NgStore from 'angularjs-store';
-
-angular
-  .module('App', [])
-  .factory('CounterStore', function CounterStore() {
-    const initialState = { count: 0 };
-    const counterStore = new NgStore(initialState);
-
-    return counterStore;
-  });
-```
-{% endcode-tabs-item %}
 {% endcode-tabs %}
 
 We can also pass a `string` to the [`copy`](../api-reference/copy.md) method to directly access the state property. Just like this example. 
@@ -44,24 +29,9 @@ angular
   });
 ```
 {% endcode-tabs-item %}
-
-{% code-tabs-item title="counter-store.js" %}
-```javascript
-import NgStore from 'angularjs-store';
-
-angular
-  .module('App', [])
-  .factory('CounterStore', function CounterStore() {
-    const initialState = { count: 0 };
-    const counterStore = new NgStore(initialState);
-
-    return counterStore;
-  });
-```
-{% endcode-tabs-item %}
 {% endcode-tabs %}
 
-> **Note:** All the returned data by the [`copy`](../api-reference/copy.md) method are just only a state copy. Any changes to that copy does not reflect to other copy and most importantly, it does not reflect to the original state in the store.
-
-
+{% hint style="info" %}
+All returned data by the [copy](../api-reference/copy.md) method are just only a new state copy. Any changes to that copy does not reflect to other copy and most importantly, it does not reflect to the original state in the store.
+{% endhint %}
 
