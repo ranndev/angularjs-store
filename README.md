@@ -46,7 +46,7 @@ yarn add angularjs-store
 
 ## Documentation
 
-See the documentation here [angularjs-store.gitbook.io](https://angularjs-store.gitbook.io/docs/)
+See the documentation here [https://angularjs-store.gitbook.io](https://angularjs-store.gitbook.io/docs/)
 
 ## Contributing
 
