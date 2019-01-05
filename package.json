@@ -1,6 +1,6 @@
 {
   "name": "angularjs-store",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "A tools to easily manage your state in AngularJS Application",
   "main": "lib/angularjs-store.min.js",
   "scripts": {
