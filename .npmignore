@@ -1,6 +1,7 @@
 .vscode
 demo
 docs
+images
 node_modules
 specs
 src
