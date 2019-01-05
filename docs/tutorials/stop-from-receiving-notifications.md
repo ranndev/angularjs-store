@@ -4,7 +4,7 @@ Whenever we add a hook in the store it always return a `HookLink` instance that 
 
 In this example we use the `destroy` method to manually destroy the hook when it reach its 3rd invocation.
 
-{% hint style="warning" %}
+{% hint style="danger" %}
 `hookLink` is only available inside reducers after hook initial phase.
 {% endhint %}
 

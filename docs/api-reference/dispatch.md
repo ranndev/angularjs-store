@@ -7,7 +7,7 @@ Send an update to store.
 | Name | Type | Description |
 | :--- | :--- | :--- |
 | _**action**_ | `string` | Action label. |
-| _**newState**_ | `object` `function` | New state that will merge to current state. Exceeded properties are not restricted. |
+| _**newState**_ | `object` `function` | New state that will merge to current state. Exceeded properties are not restricted. If you use a function for this, it should be look like: `function (state) {...}`  and must return a new state. |
 
 **@return**
 
@@ -28,7 +28,7 @@ let foo = store.copy('foo');
 store.dispatch('TOGGLE_FOO', {foo: !foo});
 ```
 
-Another option for updating the state. Using function, we can now omit the code from line 4 on the first example because the current state is already on the parameter of callback function.
+Another option for updating the state is using function as second parameter, we can now omit the code from line 4 on the first example because the current state is already on the argument list of callback function.
 
 ```javascript
 const store = new NgStore({foo: true});

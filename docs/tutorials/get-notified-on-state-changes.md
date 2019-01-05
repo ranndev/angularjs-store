@@ -27,7 +27,7 @@ All the attached hook has an initial phase which make its reducers to run after 
 {% endhint %}
 
 {% hint style="info" %}
-To determine if the reducer is running on its initial phase we can use the second parameter from reducer function which hold the count of hook invocation.
+To determine if the reducer is running on its initial phase we can use the second argument from reducer function which hold the count of hook invocation.
 {% endhint %}
 
 Since we only update the scope variable `count` on `INCREMENT_COUNT` and `DECREMENT_COUNT` action from the example above, we can simplified that by doing a multiple query action in a hook.
@@ -83,4 +83,6 @@ angular
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}
+
+
 
