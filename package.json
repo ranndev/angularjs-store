@@ -1,6 +1,6 @@
 {
   "name": "angularjs-store",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "A tools to easily manage your state in AngularJS Application",
   "main": "lib/angularjs-store.min.js",
   "scripts": {
@@ -35,7 +35,7 @@
     "url": "https://github.com/rannie-peralta/angularjs-store/issues"
   },
   "homepage": "https://github.com/rannie-peralta/angularjs-store#readme",
-  "dependencies": {
+  "peerDependencies": {
     "angular": "^1.7.5"
   },
   "devDependencies": {
