@@ -42,7 +42,7 @@ export default class NgStore<State> {
   /**
    * Attach a hook to the store and get notified everytime the given query matched the dispatched action.
    *
-   * @param query - Used to query the dispatched action.
+   * @param query - A query for the dispatched action.
    * @param callback - Invoke when query match to dispatched action.
    */
   public hook(query: HookActionQuery, callback: HookCallback<State>) {
@@ -92,9 +92,7 @@ export default class NgStore<State> {
    */
   public dispatch(action: string, state: Partial<State> | ((prevState: State) => Partial<State>)) {
     if (angular.isFunction(state)) {
-      this.$$stateHolder.set(
-        state(this.$$stateHolder.get() as State),
-      );
+      this.$$stateHolder.set(state(this.$$stateHolder.get() as State));
     } else {
       this.$$stateHolder.set(state);
     }
