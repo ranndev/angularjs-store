@@ -283,7 +283,14 @@
     "@types/istanbul-lib-coverage" "^2.0.0"
     "@types/yargs" "^12.0.9"
 
-"@types/angular@^1.6.54":
+"@types/angular-mocks@1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@types/angular-mocks/-/angular-mocks-1.5.0.tgz#3b1db87651a35db999e6507dba35046e09b71b9b"
+  integrity sha1-Ox24dlGjXbmZ5lB9ujUEbgm3G5s=
+  dependencies:
+    "@types/angular" "*"
+
+"@types/angular@*", "@types/angular@^1.6.54":
   version "1.6.54"
   resolved "https://registry.yarnpkg.com/@types/angular/-/angular-1.6.54.tgz#f9d5a03e4da7b021a6dabe5d63e899ed4567a5bd"
   integrity sha512-xA1FuozWXeRQ7FClUbvk8ePL+dydBeDoCWRPFTHU5+8uvVtIIfLGiHA8CMkwsbddFCYnTDVbLxG85a/HBx7LtA==
@@ -561,6 +568,11 @@ ajv@^6.1.0, ajv@^6.5.5:
     fast-json-stable-stringify "^2.0.0"
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
+
+angular-mocks@1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/angular-mocks/-/angular-mocks-1.5.0.tgz#81b3e4b21098d7c545c6f0a0a97f897b26879dd9"
+  integrity sha1-gbPkshCY18VFxvCgqX+JeyaHndk=
 
 angular@1.5.0:
   version "1.5.0"

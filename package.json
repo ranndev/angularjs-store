@@ -36,8 +36,10 @@
   },
   "homepage": "https://github.com/rannie-peralta/angularjs-store#readme",
   "devDependencies": {
+    "@types/angular-mocks": "1.5.0",
     "@types/jest": "^24.0.11",
     "angular": "1.5.0",
+    "angular-mocks": "1.5.0",
     "awesome-typescript-loader": "^5.2.1",
     "clean-webpack-plugin": "^2.0.1",
     "jest": "^24.7.1",
