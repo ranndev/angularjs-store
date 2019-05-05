@@ -4,12 +4,13 @@
   "description": "A tools to easily manage your state in AngularJS Application",
   "main": "lib/angularjs-store.min.js",
   "scripts": {
-    "prepublishOnly": "gulp build",
-    "build": "gulp build",
-    "build:demo": "gulp build && webpack --config webpack.demo.prod.js",
-    "serve:demo": "gulp build && webpack-dev-server --config webpack.demo.dev.js",
-    "test": "mocha-webpack --webpack-config webpack.test.js \"specs/*.spec.js\"",
-    "test:watch": "mocha-webpack --webpack-config webpack.test.js --watch \"specs/*.spec.js\""
+    "start": "webpack",
+    "prebuild": "npm run lint && npm run test",
+    "build": "webpack --env=production",
+    "test:watch": "jest --watch --config=./jest.config.js",
+    "test": "jest",
+    "lint:fix": "tslint --fix --project tsconfig.json",
+    "lint": "tslint --project tsconfig.json"
   },
   "repository": {
     "type": "git",
@@ -17,7 +18,6 @@
   },
   "keywords": [
     "angularjs",
-    "angular1",
     "store",
     "state",
     "predictable",
@@ -35,41 +35,22 @@
     "url": "https://github.com/rannie-peralta/angularjs-store/issues"
   },
   "homepage": "https://github.com/rannie-peralta/angularjs-store#readme",
+  "devDependencies": {
+    "@types/jest": "^24.0.11",
+    "angular": "1.5.0",
+    "awesome-typescript-loader": "^5.2.1",
+    "clean-webpack-plugin": "^2.0.1",
+    "jest": "^24.7.1",
+    "ts-jest": "^24.0.1",
+    "tslint": "^5.15.0",
+    "typescript": "^3.4.3",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.1"
+  },
+  "dependencies": {
+    "@types/angular": "^1.6.54"
+  },
   "peerDependencies": {
     "angular": "^1.5.0"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.1.6",
-    "@babel/preset-env": "^7.1.6",
-    "angular": "^1.5.0",
-    "babel-loader": "^8.0.4",
-    "benv": "^3.3.0",
-    "bootstrap": "^4.1.3",
-    "chai": "^4.2.0",
-    "clean-webpack-plugin": "^1.0.0",
-    "css-loader": "^1.0.1",
-    "eslint": "^5.10.0",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-import-resolver-alias": "^1.1.2",
-    "eslint-loader": "^2.1.1",
-    "eslint-plugin-import": "^2.14.0",
-    "gitbook-cli": "^2.3.2",
-    "gulp": "^4.0.0",
-    "gulp-clean": "^0.4.0",
-    "gulp-cli": "^2.0.1",
-    "html-loader": "^0.5.5",
-    "html-webpack-plugin": "^3.2.0",
-    "jsdom": "10.1.0",
-    "mini-css-extract-plugin": "^0.4.5",
-    "mocha": "^5.2.0",
-    "mocha-webpack": "next",
-    "node-sass": "^4.10.0",
-    "sass-loader": "^7.1.0",
-    "style-loader": "^0.23.1",
-    "uglifyjs-webpack-plugin": "^2.1.0",
-    "webpack": "^4.26.1",
-    "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.10",
-    "webpack-node-externals": "^1.7.2"
   }
 }
