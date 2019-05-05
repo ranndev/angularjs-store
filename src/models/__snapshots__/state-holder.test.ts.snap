@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StateHolder should match the initial state to snapshot 1`] = `
+Object {
+  "get": [Function],
+  "set": [Function],
+}
+`;

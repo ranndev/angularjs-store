@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "noImplicitAny": true,
+    "removeComments": true,
+    "sourceMap": true,
+    "strictNullChecks": true,
+    "target": "es3",
+    "lib": ["es2017", "dom"]
+  },
+  "include": [
+    "./src"
+  ],
+  "exclude": [
+    ".vscode",
+    "./dist",
+    "./images",
+    "./node_modules"
+  ]
+}
