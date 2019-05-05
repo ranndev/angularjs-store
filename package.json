@@ -36,11 +36,12 @@
   },
   "homepage": "https://github.com/rannie-peralta/angularjs-store#readme",
   "peerDependencies": {
-    "angular": "^1.7.5"
+    "angular": "^1.5.0"
   },
   "devDependencies": {
     "@babel/core": "^7.1.6",
     "@babel/preset-env": "^7.1.6",
+    "angular": "^1.5.0",
     "babel-loader": "^8.0.4",
     "benv": "^3.3.0",
     "bootstrap": "^4.1.3",
