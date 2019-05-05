@@ -1,4 +1,4 @@
-import { IScope, IControllerService } from 'angular';
+import { IControllerService, IScope } from 'angular';
 import HookLink from './hook-link';
 
 let hookLink: HookLink;
