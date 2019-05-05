@@ -8,6 +8,7 @@ module.exports = {
     "!<rootDir>/src/**/__snapshots__/*"
   ],
   coverageDirectory: "coverage",
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
   testMatch: [
     "<rootDir>/src/**/*.test.ts"
   ],
