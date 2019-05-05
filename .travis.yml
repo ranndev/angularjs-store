@@ -1,3 +1,7 @@
 language: node_js
 node_js:
   - "8.12.0"
+script:
+  - yarn build
+after_success:
+  - yarn codecov --token=84ec10f0-28a0-49bf-8473-bae5be558b4c --disable=gcov
