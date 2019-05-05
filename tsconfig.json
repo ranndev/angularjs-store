@@ -13,7 +13,10 @@
   ],
   "exclude": [
     ".vscode",
+    "./coverage",
+    "./demo",
     "./dist",
+    "./docs",
     "./images",
     "./node_modules"
   ]
