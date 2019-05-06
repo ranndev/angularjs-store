@@ -1,7 +1,6 @@
 import angular from 'angular';
 
-// tslint:disable-next-line: interface-name
-export default interface StateHolder<State> {
+export interface IStateHolder<State> {
   /**
    * Get a new copy of state or just a specific property of it.
    *
@@ -17,7 +16,12 @@ export default interface StateHolder<State> {
   set(state: Partial<State>): void;
 }
 
-export function create<State>(initialState: State): StateHolder<State> {
+/**
+ * Create a StoreHolder.
+ *
+ * @param initialState - Initial state value.
+ */
+export default function createStateHolder<State>(initialState: State): IStateHolder<State> {
   let $$state: State = angular.copy(initialState);
 
   function get(prop?: keyof State) {

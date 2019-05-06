@@ -1,10 +1,10 @@
-import StateHolder, { create } from './state-holder';
+import createStateHolder, { IStateHolder } from './state-holder';
 
 const state = { foo: '', bar: 1, baz: false };
-let stateHolder: StateHolder<typeof state>;
+let stateHolder: IStateHolder<typeof state>;
 
 beforeEach(() => {
-  stateHolder = create(state);
+  stateHolder = createStateHolder(state);
 });
 
 describe('StateHolder', () => {
@@ -30,13 +30,17 @@ describe('StateHolder', () => {
   });
 
   describe('set', () => {
-    it.each<[Partial<typeof state>]>([
-      [{ foo: 'bar' }],
-      [{ foo: 'baz', bar: 100 }],
-      [{ foo: 'fuz', bar: 200, baz: true }],
-    ])('should support updating state partially', (partialState) => {
-      stateHolder.set(partialState);
-      expect(stateHolder.get()).toEqual({ ...state, ...partialState });
+    it('should support updating state partially', () => {
+      const partialStates: Array<Partial<typeof state>> = [
+        { foo: 'bar' },
+        { foo: 'baz', bar: 100 },
+        { foo: 'fuz', bar: 200, baz: true },
+      ];
+
+      partialStates.forEach((partialState) => {
+        stateHolder.set(partialState);
+        expect(stateHolder.get()).toEqual({ ...state, ...partialState });
+      });
     });
   });
 });

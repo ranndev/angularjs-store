@@ -1,4 +1,4 @@
-import { IControllerService, IScope } from 'angular';
+import { IRootScopeService, IScope } from 'angular';
 import HookLink from './hook-link';
 
 let hookLink: HookLink;
@@ -10,7 +10,7 @@ beforeEach(() => {
   hookLink = new HookLink(destroyer);
 });
 
-beforeEach(inject(($rootScope: angular.IRootScopeService) => {
+beforeEach(inject(($rootScope: IRootScopeService) => {
   scope = $rootScope.$new();
 }));
 
