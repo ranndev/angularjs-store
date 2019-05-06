@@ -56,7 +56,7 @@ describe('NgStore', () => {
     });
 
     it('should throw on invalid type of query', () => {
-      const invalidQueries = [0, false, null, undefined, {}, () => {}];
+      const invalidQueries = [0, false, null, undefined, {}, (arg: any) => arg];
       invalidQueries.forEach((query: HookActionQuery) => {
         expect(() => {
           store.hook(query, jest.fn());
