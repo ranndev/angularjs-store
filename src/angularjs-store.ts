@@ -3,9 +3,9 @@ import Hook, { HookCallback, HookMatcher } from './models/hook';
 import HookLink from './models/hook-link';
 import createStateHolder, { IStateHolder } from './models/state-holder';
 
-export type HookActionQuery = string | string[] | RegExp;
+export type HookActionQuery<Actions extends string[] = string[]> = Actions[number] | Array<Actions[number]> | RegExp;
 
-export default class NgStore<State> {
+export default class NgStore<State extends { [key: string]: any } = {}, Actions extends string[] = string[]> {
   private $$stateHolder: IStateHolder<State>;
 
   /** All registered hooks from the store */
@@ -45,7 +45,7 @@ export default class NgStore<State> {
    * @param query - A query for the dispatched action.
    * @param callback - Invoke when query match to dispatched action.
    */
-  public hook(query: HookActionQuery, callback: HookCallback<State>) {
+  public hook(query: HookActionQuery<Actions>, callback: HookCallback<State>) {
     let matcher: HookMatcher;
 
     if (typeof query === 'string') {
@@ -76,7 +76,7 @@ export default class NgStore<State> {
    * @param action - Action name.
    * @param state - Store new state.
    */
-  public dispatch(action: string, state: Partial<State>): void;
+  public dispatch(action: Actions[number], state: Partial<State>): void;
 
   /**
    * Dispatch an action for updating state.
@@ -85,12 +85,12 @@ export default class NgStore<State> {
    * @param setState - State setter with the access to previous state.
    */
   // tslint:disable-next-line: unified-signatures
-  public dispatch(action: string, setState: (prevState: State) => Partial<State>): void;
+  public dispatch(action: Actions[number], setState: (prevState: State) => Partial<State>): void;
 
   /**
    * Implementation.
    */
-  public dispatch(action: string, state: Partial<State> | ((prevState: State) => Partial<State>)) {
+  public dispatch(action: Actions[number], state: Partial<State> | ((prevState: State) => Partial<State>)) {
     if (angular.isFunction(state)) {
       this.$$stateHolder.set(state(this.$$stateHolder.get() as State));
     } else {
