@@ -25,7 +25,7 @@ We can also pass a `string` to the [`copy`](../api-reference/copy.md) method to 
 angular
   .module('App', [])
   .controller('ControllerA', function ControllerA($scope, CounterStore) {
-    $scope.count = CounterStore.copy('copy');
+    $scope.count = CounterStore.copy('count');
   });
 ```
 {% endcode-tabs-item %}
