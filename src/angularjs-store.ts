@@ -84,7 +84,6 @@ export default class NgStore<State extends { [key: string]: any } = {}, Actions 
    * @param action - Action name.
    * @param setState - State setter with the access to previous state.
    */
-  // tslint:disable-next-line: unified-signatures
   public dispatch(action: Actions[number], setState: (prevState: State) => Partial<State>): void;
 
   /**
