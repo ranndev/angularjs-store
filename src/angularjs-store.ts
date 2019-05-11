@@ -36,7 +36,7 @@ export default class NgStore<State extends { [key: string]: any } = {}, Actions 
    * Implementation.
    */
   public copy(prop?: keyof State) {
-    return this.$$stateHolder.get(prop);
+    return this.$$stateHolder.get(prop!);
   }
 
   /**
@@ -91,13 +91,13 @@ export default class NgStore<State extends { [key: string]: any } = {}, Actions 
    */
   public dispatch(action: Actions[number], state: Partial<State> | ((prevState: State) => Partial<State>)) {
     if (angular.isFunction(state)) {
-      this.$$stateHolder.set(state(this.$$stateHolder.get() as State));
+      this.$$stateHolder.set(state(this.$$stateHolder.get()));
     } else {
       this.$$stateHolder.set(state);
     }
 
     for (const hook of this.$$hooks) {
-      hook.run(action, this.$$stateHolder.get() as State);
+      hook.run(action, this.$$stateHolder.get());
     }
   }
 }

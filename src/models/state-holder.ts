@@ -2,11 +2,16 @@ import angular from 'angular';
 
 export interface IStateHolder<State> {
   /**
-   * Get a new copy of state or just a specific property of it.
+   * Get a new copy of state.
+   */
+  get(): State;
+
+  /**
+   * Get a new copy of state's specific property.
    *
    * @param prop - Property name of state data.
    */
-  get(prop?: keyof State): State | State[keyof State];
+  get(prop: keyof State): State[keyof State];
 
   /**
    * Update the state.
@@ -21,7 +26,7 @@ export interface IStateHolder<State> {
  *
  * @param initialState - Initial state value.
  */
-export default function createStateHolder<State>(initialState: State): IStateHolder<State> {
+export default function createStateHolder<State>(initialState: State) {
   let $$state: State = angular.copy(initialState);
 
   function get(prop?: keyof State) {
@@ -32,5 +37,5 @@ export default function createStateHolder<State>(initialState: State): IStateHol
     $$state = angular.merge({}, $$state, state);
   }
 
-  return { get, set };
+  return { get, set } as IStateHolder<State>;
 }
