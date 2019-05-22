@@ -56,6 +56,6 @@
     "@types/angular": "^1.6.54"
   },
   "peerDependencies": {
-    "angular": "^1.5.0"
+    "angular": "^1.7.8"
   }
 }
