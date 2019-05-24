@@ -1,12 +1,12 @@
 import angular from 'angular';
 import Hook, { HookCallback, HookMatcher } from './models/hook';
 import HookLink from './models/hook-link';
-import createStateHolder, { IStateHolder } from './models/state-holder';
+import createStateHolder, { StateCopier, StateHolder } from './models/state-holder';
 
 export type HookActionQuery<Actions extends string[] = string[]> = Actions[number] | Array<Actions[number]> | RegExp;
 
 export default class NgStore<State extends { [key: string]: any } = {}, Actions extends string[] = string[]> {
-  private $$stateHolder: IStateHolder<State>;
+  private $$stateHolder: StateHolder<State>;
 
   /** All registered hooks from the store */
   private $$hooks: Array<Hook<State>> = [];
@@ -15,9 +15,10 @@ export default class NgStore<State extends { [key: string]: any } = {}, Actions 
    * Create a Store.
    *
    * @param initialState - Initial state value.
+   * @param copier - Custom state copier.
    */
-  constructor(initialState: State) {
-    this.$$stateHolder = createStateHolder(initialState);
+  constructor(initialState: State, copier?: StateCopier<State>) {
+    this.$$stateHolder = createStateHolder(initialState, copier);
   }
 
   /**
