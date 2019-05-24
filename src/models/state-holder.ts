@@ -1,6 +1,8 @@
 import angular from 'angular';
 
-export interface IStateHolder<State> {
+export type StateCopier<State> = (partialState: Partial<State>, prevState: State) => State;
+
+export interface StateHolder<State> {
   /**
    * Get a new copy of state.
    */
@@ -25,8 +27,9 @@ export interface IStateHolder<State> {
  * Create a StoreHolder.
  *
  * @param initialState - Initial state value.
+ * @param copier - Custom state copier.
  */
-export default function createStateHolder<State>(initialState: State) {
+export default function createStateHolder<State>(initialState: State, copier?: StateCopier<State>) {
   let $$state: State = angular.copy(initialState);
 
   function get(prop?: keyof State) {
@@ -34,8 +37,16 @@ export default function createStateHolder<State>(initialState: State) {
   }
 
   function set(state: Partial<State>) {
-    $$state = angular.merge({}, $$state, state);
+    if (copier) {
+      $$state = copier(state, $$state);
+    } else {
+      for (const key in state) {
+        if (state.hasOwnProperty(key) && key in $$state) {
+          $$state[key] = angular.copy(state[key]!);
+        }
+      }
+    }
   }
 
-  return { get, set } as IStateHolder<State>;
+  return { get, set } as StateHolder<State>;
 }
