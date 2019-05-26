@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-export type StateCopier<State> = (partialState: Partial<State>, prevState: State) => State;
+export type StateCopier<State> = (prevState: State, partialState?: Partial<State>) => State;
 
 export interface StateHolder<State> {
   /**
@@ -9,16 +9,9 @@ export interface StateHolder<State> {
   get(): State;
 
   /**
-   * Get a new copy of state's specific property.
-   *
-   * @param prop - Property name of state data.
-   */
-  get(prop: keyof State): State[keyof State];
-
-  /**
    * Update the state.
    *
-   * @param state - New state.
+   * @param state - Partial of new state.
    */
   set(state: Partial<State>): void;
 }
@@ -32,13 +25,27 @@ export interface StateHolder<State> {
 export default function createStateHolder<State>(initialState: State, copier?: StateCopier<State>) {
   let $$state: State = angular.copy(initialState);
 
-  function get(prop?: keyof State) {
-    return angular.copy(prop ? $$state[prop] : $$state);
+  function get() {
+    let stateCopy: State;
+
+    if (copier) {
+      stateCopy = copier($$state);
+    } else {
+      stateCopy = {} as State;
+
+      for (const key in $$state) {
+        if ($$state.hasOwnProperty(key)) {
+          stateCopy[key] = angular.copy($$state[key]);
+        }
+      }
+    }
+
+    return stateCopy;
   }
 
   function set(state: Partial<State>) {
     if (copier) {
-      $$state = copier(state, $$state);
+      $$state = copier($$state, state);
     } else {
       for (const key in state) {
         if (state.hasOwnProperty(key) && key in $$state) {

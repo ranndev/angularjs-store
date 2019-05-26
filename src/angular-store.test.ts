@@ -2,7 +2,7 @@ import NgStore, { HookActionQuery } from './angularjs-store';
 import { HookCallback } from './models/hook';
 import HookLink from './models/hook-link';
 
-let store: NgStore<typeof state>;
+let store: NgStore<State>;
 const state = { foo: '', bar: 1, baz: false };
 const validQueries: HookActionQuery[] = [
   'TEST_ACTION',
@@ -10,33 +10,35 @@ const validQueries: HookActionQuery[] = [
   /^TEST_ACTION$/,
 ];
 
-beforeEach(() => {
-  store = new NgStore(state);
-});
+type State = typeof state;
 
 describe('NgStore', () => {
+  beforeEach(() => {
+    store = new NgStore(state);
+  });
+
   it('should match the initial state to snapshot', () => {
     expect(store).toMatchSnapshot();
   });
 
   describe('copy', () => {
     it('should always return a new copy of state', () => {
-      const copies: Array<typeof state> = [];
+      const copies: State[] = [];
       for (let i = 0; i < 9; i++) {
         const copy = store.copy();
         expect(copies).not.toContain(copy);
         copies.push(copy);
       }
     });
-
-    it('should return a specific property of state', () => {
-      Object.entries(state).forEach(([key, value]) => {
-        expect(value).toBe(store.copy(key as keyof typeof state));
-      });
-    });
   });
 
   describe('hook', () => {
+    it('should accept wild card (*) query', () => {
+      expect(() => {
+        store.hook('*', jest.fn());
+      }).not.toThrow();
+    });
+
     it('should accept string query', () => {
       expect(() => {
         store.hook('FOO_BAR', jest.fn());
@@ -80,7 +82,7 @@ describe('NgStore', () => {
     });
 
     it('shoud destroy by using the returned hook link', () => {
-      const callbacks: Array<HookCallback<typeof state>> = [];
+      const callbacks: Array<HookCallback<State>> = [];
       const hookLinks: HookLink[] = [];
 
       validQueries.forEach((query) => {
@@ -130,5 +132,20 @@ describe('NgStore', () => {
       store.dispatch('TEST_ACTION', { foo: 'bar' });
       expect(hookCallback).toHaveBeenLastCalledWith({ ...state, foo: 'bar' }, false);
     });
+  });
+});
+
+describe('NgStore', () => {
+  it('should call the hook callback on any dispatched action when using wild card action query', () => {
+    const storeWithWildCard = new NgStore<{}, ['Action_A', 'Action_B', 'Action_C']>({});
+    const hookCallback = jest.fn();
+
+    storeWithWildCard.hook('*', hookCallback);
+    storeWithWildCard.dispatch('Action_A', {});
+    storeWithWildCard.dispatch('Action_B', {});
+    storeWithWildCard.dispatch('Action_C', {});
+
+    // Should call four times. included the initialization call.
+    expect(hookCallback).toHaveBeenCalledTimes(4);
   });
 });
