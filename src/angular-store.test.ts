@@ -28,12 +28,6 @@ describe('NgStore', () => {
         copies.push(copy);
       }
     });
-
-    it('should return a specific property of state', () => {
-      Object.entries(state).forEach(([key, value]) => {
-        expect(value).toBe(store.copy(key as keyof typeof state));
-      });
-    });
   });
 
   describe('hook', () => {

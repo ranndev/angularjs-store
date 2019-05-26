@@ -3,9 +3,15 @@ import Hook, { HookCallback, HookMatcher } from './models/hook';
 import HookLink from './models/hook-link';
 import createStateHolder, { StateCopier, StateHolder } from './models/state-holder';
 
-export type HookActionQuery<Actions extends string[] = string[]> = Actions[number] | Array<Actions[number]> | RegExp;
+export type HookActionQuery<Actions extends string[] = string[]> = '*'
+  | Actions[number]
+  | Array<Actions[number] | '*'>
+  | RegExp;
 
-export default class NgStore<State extends { [key: string]: any } = {}, Actions extends string[] = string[]> {
+export default class NgStore<
+  State extends { [key: string]: any } = {},
+  Actions extends string[] = string[],
+> {
   private $$stateHolder: StateHolder<State>;
 
   /** All registered hooks from the store */
@@ -24,20 +30,8 @@ export default class NgStore<State extends { [key: string]: any } = {}, Actions 
   /**
    * Get a new copy of state.
    */
-  public copy(): State;
-
-  /**
-   * Get a new copy of state's specific property.
-   *
-   * @param prop - Property name of state data.
-   */
-  public copy(prop: keyof State): State[keyof State];
-
-  /**
-   * Implementation.
-   */
-  public copy(prop?: keyof State) {
-    return this.$$stateHolder.get(prop!);
+  public copy(): State {
+    return this.$$stateHolder.get();
   }
 
   /**
@@ -50,7 +44,11 @@ export default class NgStore<State extends { [key: string]: any } = {}, Actions 
     let matcher: HookMatcher;
 
     if (typeof query === 'string') {
-      matcher = (action) => action === query;
+      if (query === '*') {
+        matcher = () => true;
+      } else {
+        matcher = (action) => action === query;
+      }
     } else if (Array.isArray(query)) {
       matcher = (action) => query.indexOf(action) > -1;
     } else if (query instanceof RegExp) {
@@ -64,7 +62,7 @@ export default class NgStore<State extends { [key: string]: any } = {}, Actions 
     this.$$hooks.push(hook);
 
     // Initial run of hook.
-    hook.run('', this.$$stateHolder.get() as State, true);
+    hook.run('', this.$$stateHolder.get(), true);
 
     return new HookLink(() => {
       this.$$hooks.splice(this.$$hooks.indexOf(hook), 1);

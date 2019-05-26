@@ -16,16 +16,10 @@ describe('StateHolder', () => {
     it('should always return a new copy of state', () => {
       const copies: Array<typeof state> = [];
       for (let i = 0; i < 9; i++) {
-        const copy = stateHolder.get() as typeof state;
+        const copy = stateHolder.get();
         expect(copies).not.toContain(copy);
         copies.push(copy);
       }
-    });
-
-    it('should return a specific state property', () => {
-      Object.entries(state).forEach(([key, value]) => {
-        expect(value).toEqual(stateHolder.get(key as keyof typeof state));
-      });
     });
   });
 
@@ -50,9 +44,14 @@ describe('StateHolder', () => {
 
     it('should not merge an array property', () => {
       stateHolder.set({ baz: ['a', 'b', 'c'] });
-      expect(stateHolder.get('baz')).toEqual(['a', 'b', 'c']);
+      expect(stateHolder.get()).toEqual(
+        expect.objectContaining({ baz: ['a', 'b', 'c'] }),
+      );
+
       stateHolder.set({ baz: ['a', 'b'] });
-      expect(stateHolder.get('baz')).toEqual(['a', 'b']);
+      expect(stateHolder.get()).toEqual(
+        expect.objectContaining({ baz: ['a', 'b'] }),
+      );
     });
 
     it('should user the copier when provided', () => {
