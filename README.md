@@ -9,7 +9,7 @@ AngularJS Store will guide you to create a one way data flow in your application
 [![Build Status](https://travis-ci.com/rannie-peralta/angularjs-store.svg?branch=master)](https://travis-ci.com/rannie-peralta/angularjs-store)
 ![](https://img.shields.io/snyk/vulnerabilities/github/rannie-peralta/angularjs-store.svg)
 
-[![NPM](https://nodei.co/npm/angularjs-store.png)](https://nodei.co/npm/angularjs-store/)
+[![NPM](https://nodei.co/npm/angularjs-store.png)](https://nodei.co/npm/angularjs-store/) [![Greenkeeper badge](https://badges.greenkeeper.io/rannie-peralta/angularjs-store.svg)](https://greenkeeper.io/)
 
 ## Table of contents
 
