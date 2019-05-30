@@ -1,7 +1,7 @@
 import angular from 'angular';
 import Hook, { HookCallback, HookMatcher } from './models/hook';
 import HookLink from './models/hook-link';
-import createStateHolder, { StateCopier, StateHolder } from './models/state-holder';
+import hold, { StateHolder } from './models/state-holder';
 
 export type HookActionQuery<Actions extends string[] = string[]> = '*'
   | Actions[number]
@@ -21,10 +21,9 @@ export default class NgStore<
    * Create a Store.
    *
    * @param initialState - Initial state value.
-   * @param copier - Custom state copier.
    */
-  constructor(initialState: State, copier?: StateCopier<State>) {
-    this.$$stateHolder = createStateHolder(initialState, copier);
+  constructor(initialState: State) {
+    this.$$stateHolder = hold(initialState);
   }
 
   /**

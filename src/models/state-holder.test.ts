@@ -1,13 +1,13 @@
 import createStateHolder, { StateHolder } from './state-holder';
 
-const state = { foo: '', bar: 1, baz: [''] };
-let stateHolder: StateHolder<typeof state>;
-
-beforeEach(() => {
-  stateHolder = createStateHolder(state);
-});
-
 describe('StateHolder', () => {
+  const state = { foo: '', bar: 1, baz: [''] };
+  let stateHolder: StateHolder<typeof state>;
+
+  beforeEach(() => {
+    stateHolder = createStateHolder(state);
+  });
+
   it('should match the initial state to snapshot', () => {
     expect(stateHolder).toMatchSnapshot();
   });
@@ -53,15 +53,47 @@ describe('StateHolder', () => {
         expect.objectContaining({ baz: ['a', 'b'] }),
       );
     });
+  });
+});
 
-    it('should user the copier when provided', () => {
-      const customState = { foo: 'bar', bar: 'foo' };
-      const customCopier = jest.fn(() => ({ foo: 'foo', bar: 'bar' }));
-      const customStateHolder = createStateHolder(customState, customCopier);
+describe('StateHolder', () => {
+  interface State {
+    levelTwoData: {
+      levelThreeData: {
+        levelFourData: {},
+      },
+    };
+  }
 
-      customStateHolder.set({ foo: 'aaa', bar: 'aaa' });
-      expect(customCopier).toHaveBeenCalledTimes(1);
-      expect(customStateHolder.get()).toEqual({ foo: 'foo', bar: 'bar' });
+  let stateHolder: StateHolder<State>;
+
+  beforeEach(() => {
+    const levelFourData = {};
+    const levelThreeData = { levelFourData };
+    const levelTwoData = { levelThreeData };
+
+    stateHolder = createStateHolder<State>({ levelTwoData });
+  });
+
+  describe('get (default state copier)', () => {
+    it('should get a new copy of level two propery', () => {
+      const copyOne = stateHolder.get();
+      const copyTwo = stateHolder.get();
+      expect(copyOne.levelTwoData).not.toBe(copyTwo.levelTwoData);
+    });
+
+    it('should get a new copy of level three propery', () => {
+      const copyOne = stateHolder.get();
+      const copyTwo = stateHolder.get();
+      expect(copyOne.levelTwoData.levelThreeData)
+        .not.toBe(copyTwo.levelTwoData.levelThreeData);
+    });
+
+    it('should get a new copy of level three propery', () => {
+      const copyOne = stateHolder.get();
+      const copyTwo = stateHolder.get();
+      expect(copyOne.levelTwoData.levelThreeData.levelFourData)
+        .not.toBe(copyTwo.levelTwoData.levelThreeData.levelFourData);
     });
   });
 });
