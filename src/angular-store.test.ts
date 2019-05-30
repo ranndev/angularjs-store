@@ -2,15 +2,14 @@ import NgStore, { HookActionQuery } from './angularjs-store';
 import { HookCallback } from './models/hook';
 import HookLink from './models/hook-link';
 
-let store: NgStore<State>;
+let store: NgStore<typeof state>;
+
 const state = { foo: '', bar: 1, baz: false };
 const validQueries: HookActionQuery[] = [
   'TEST_ACTION',
   ['TEST_ACTION', 'SOME_ACTION'],
   /^TEST_ACTION$/,
 ];
-
-type State = typeof state;
 
 describe('NgStore', () => {
   beforeEach(() => {
@@ -23,7 +22,7 @@ describe('NgStore', () => {
 
   describe('copy', () => {
     it('should always return a new copy of state', () => {
-      const copies: State[] = [];
+      const copies: Array<typeof state> = [];
       for (let i = 0; i < 9; i++) {
         const copy = store.copy();
         expect(copies).not.toContain(copy);
@@ -82,7 +81,7 @@ describe('NgStore', () => {
     });
 
     it('shoud destroy by using the returned hook link', () => {
-      const callbacks: Array<HookCallback<State>> = [];
+      const callbacks: Array<HookCallback<typeof state>> = [];
       const hookLinks: HookLink[] = [];
 
       validQueries.forEach((query) => {
