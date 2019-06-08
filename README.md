@@ -22,6 +22,15 @@ npm install --save angularjs-store
 yarn add angularjs-store
 ```
 
+## Documentation
+
+https://angularjs-store.gitbook.io/docs
+
+## Demo
+
+https://github.com/rannie-peralta/angularjs-store-demo
+https://angularjs-store-demo.netlify.com
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
