@@ -1,41 +1,33 @@
 import angular from 'angular';
 
-export interface IStateHolder<State> {
+export interface StateHolder<State> {
   /**
    * Get a new copy of state.
    */
   get(): State;
 
   /**
-   * Get a new copy of state's specific property.
+   * Update the current state.
    *
-   * @param prop - Property name of state data.
+   * @param partialState - New partial state.
    */
-  get(prop: keyof State): State[keyof State];
-
-  /**
-   * Update the state.
-   *
-   * @param state - New state.
-   */
-  set(state: Partial<State>): void;
+  set(partialState: Partial<State>): void;
 }
 
-/**
- * Create a StoreHolder.
- *
- * @param initialState - Initial state value.
- */
-export default function createStateHolder<State>(initialState: State) {
-  let $$state: State = angular.copy(initialState);
+export default function hold<State>(state: State): StateHolder<State> {
+  const $$state = angular.copy(state);
 
-  function get(prop?: keyof State) {
-    return angular.copy(prop ? $$state[prop] : $$state);
-  }
+  const get = () => {
+    return angular.copy($$state);
+  };
 
-  function set(state: Partial<State>) {
-    $$state = angular.merge({}, $$state, state);
-  }
+  const set = (partialState: Partial<State>) => {
+    for (const key in partialState) {
+      if (partialState.hasOwnProperty(key) && key in $$state) {
+        $$state[key] = angular.copy(partialState[key])!;
+      }
+    }
+  };
 
-  return { get, set } as IStateHolder<State>;
+  return { get, set };
 }

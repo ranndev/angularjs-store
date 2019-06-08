@@ -16,7 +16,6 @@
     "./coverage",
     "./demo",
     "./dist",
-    "./docs",
     "./images",
     "./node_modules"
   ]

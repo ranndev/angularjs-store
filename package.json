@@ -1,6 +1,6 @@
 {
   "name": "angularjs-store",
-  "version": "4.0.0-rc",
+  "version": "4.0.0",
   "description": "A tool to easily manage your state in AngularJS Application",
   "main": "dist/angularjs-store.min.js",
   "types": "dist/angularjs-store.d.ts",
@@ -50,7 +50,7 @@
     "ts-jest": "^24.0.2",
     "tslint": "^5.16.0",
     "typescript": "^3.4.5",
-    "webpack": "^4.32.1",
+    "webpack": "^4.32.2",
     "webpack-cli": "^3.3.2"
   },
   "dependencies": {
