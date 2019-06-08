@@ -1,6 +1,6 @@
 {
   "name": "angularjs-store",
-  "version": "4.0.4-rc",
+  "version": "4.0.0",
   "description": "A tool to easily manage your state in AngularJS Application",
   "main": "dist/angularjs-store.min.js",
   "types": "dist/angularjs-store.d.ts",
