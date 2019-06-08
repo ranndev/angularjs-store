@@ -13,9 +13,9 @@ module.exports = {
     "<rootDir>/src/**/*.test.ts"
   ],
   testPathIgnorePatterns: [
-    "<rootDir>/demo",
+    "<rootDir>/.vscode",
+    "<rootDir>/coverage",
     "<rootDir>/dist",
-    "<rootDir>/docs",
     "<rootDir>/images",
     "<rootDir>/node_modules"
   ],
