@@ -1,6 +1,14 @@
 {
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "editor.rulers": [120],
+  "files.trimTrailingWhitespace": true,
   "files.insertFinalNewline": true,
-  "files.eol": "\n"
+  "files.trimFinalNewlines": true,
+  "files.eol": "\n",
+  "tslint.configFile": "tslint.json",
+  "[markdown]": {
+    "files.trimTrailingWhitespace": false
+  }
 }

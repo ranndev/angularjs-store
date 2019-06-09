@@ -2,23 +2,11 @@
 
 ![AngularJS Store with AngularJS](./images/favicon-with-angularjs.png)
 
-AngularJS Store will guide you to create a one way data flow in your application (Single Source of Truth). Manage your AngularJS application's state into a very predicable way.
+AngularJS Store will guide you on creating a one-way data flow in your application (Single Source of Truth). Manage your AngularJS application's state into a very predictable way.
 
-![](https://img.shields.io/github/license/rannie-peralta/angularjs-store.svg)
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/rannie-peralta/angularjs-store/issues)
 [![Build Status](https://travis-ci.com/rannie-peralta/angularjs-store.svg?branch=master)](https://travis-ci.com/rannie-peralta/angularjs-store)
-![](https://img.shields.io/snyk/vulnerabilities/github/rannie-peralta/angularjs-store.svg)
-
-[![NPM](https://nodei.co/npm/angularjs-store.png)](https://nodei.co/npm/angularjs-store/)
-
-## Table of contents
-
-* [Installation](#installation)
-* [Demo](#demo)
-* [Documentation](#documentation)
-* [Contributing](#contributing)
-* [Authors](#authors)
-* [Lisence](#license)
+[![codecov](https://codecov.io/gh/rannie-peralta/angularjs-store/branch/develop/graph/badge.svg)](https://codecov.io/gh/rannie-peralta/angularjs-store)
+[![Greenkeeper badge](https://badges.greenkeeper.io/rannie-peralta/angularjs-store.svg)](https://greenkeeper.io/)
 
 ## Installation
 
@@ -34,31 +22,14 @@ npm install --save angularjs-store
 yarn add angularjs-store
 ```
 
-**CDN**
+## Documentation
 
-```html
-<script src="https://cdn.jsdelivr.net/npm/angularjs-store@3.0.0/lib/angularjs-store.min.js" integrity="sha256-nsaQaMgobX864h304MR7laX7CykZNGPW4cfjlG+jOuc=" crossorigin="anonymous"></script>
-```
+https://angularjs-store.gitbook.io/docs
 
 ## Demo
 
-[AngularJS Store Demo](https://angularjsstore-demo.netlify.com/) (Working in progress)
-
-## Documentation
-
-See the documentation here [https://angularjs-store.gitbook.io](https://angularjs-store.gitbook.io/docs/)
-
-## Contributing
-
-1. Fork it (https://github.com/rannie-peralta/angularjs-store/fork)
-2. Create your feature branch (`git checkout -b feature/foobar`)
-3. Commit your changes (`git commit -am 'Add some foobar'`)
-4. Push to the branch (`git push origin feature/foobar`)
-5. Create your Pull Request
-
-## Authors
-
-* **[Rannie Peralta](https://github.com/rannie-peralta)**
+https://angularjs-store-demo.netlify.com  
+https://github.com/rannie-peralta/angularjs-store-demo
 
 ## License
 
