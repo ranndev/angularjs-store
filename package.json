@@ -58,5 +58,8 @@
   },
   "peerDependencies": {
     "angular": "^1.7.8"
+  },
+  "greenkeeper": {
+    "ignore": ["clean-webpack-plugin"]
   }
 }
