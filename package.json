@@ -9,7 +9,7 @@
     "prebuild": "npm run lint && npm run test",
     "prepublishOnly": "npm run build",
     "build": "webpack --env=production",
-    "postbuild": "tsc ./src/angularjs-store.ts --declaration --lib es2017,dom --emitDeclarationOnly --esModuleInterop --outDir ./dist",
+    "postbuild": "tsc ./src/angularjs-store.ts --declaration --lib es2017,dom --emitDeclarationOnly --esModuleInterop --skipLibCheck --outDir ./dist",
     "test:watch": "jest --watch --config=./jest.config.js",
     "test": "jest",
     "lint:fix": "tslint --fix --project tsconfig.json",

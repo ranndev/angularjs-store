@@ -6,7 +6,8 @@
     "sourceMap": true,
     "strictNullChecks": true,
     "target": "es3",
-    "lib": ["es2017", "dom"]
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true
   },
   "include": [
     "./src"
