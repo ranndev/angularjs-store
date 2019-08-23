@@ -44,14 +44,10 @@ describe('StateHolder', () => {
 
     it('should not merge an array property', () => {
       stateHolder.set({ baz: ['a', 'b', 'c'] });
-      expect(stateHolder.get()).toEqual(
-        expect.objectContaining({ baz: ['a', 'b', 'c'] }),
-      );
+      expect(stateHolder.get()).toEqual(expect.objectContaining({ baz: ['a', 'b', 'c'] }));
 
       stateHolder.set({ baz: ['a', 'b'] });
-      expect(stateHolder.get()).toEqual(
-        expect.objectContaining({ baz: ['a', 'b'] }),
-      );
+      expect(stateHolder.get()).toEqual(expect.objectContaining({ baz: ['a', 'b'] }));
     });
   });
 });
@@ -60,8 +56,8 @@ describe('StateHolder', () => {
   interface State {
     levelTwoData: {
       levelThreeData: {
-        levelFourData: {},
-      },
+        levelFourData: {};
+      };
     };
   }
 
@@ -85,15 +81,15 @@ describe('StateHolder', () => {
     it('should get a new copy of level three propery', () => {
       const copyOne = stateHolder.get();
       const copyTwo = stateHolder.get();
-      expect(copyOne.levelTwoData.levelThreeData)
-        .not.toBe(copyTwo.levelTwoData.levelThreeData);
+      expect(copyOne.levelTwoData.levelThreeData).not.toBe(copyTwo.levelTwoData.levelThreeData);
     });
 
     it('should get a new copy of level three propery', () => {
       const copyOne = stateHolder.get();
       const copyTwo = stateHolder.get();
-      expect(copyOne.levelTwoData.levelThreeData.levelFourData)
-        .not.toBe(copyTwo.levelTwoData.levelThreeData.levelFourData);
+      expect(copyOne.levelTwoData.levelThreeData.levelFourData).not.toBe(
+        copyTwo.levelTwoData.levelThreeData.levelFourData,
+      );
     });
   });
 });

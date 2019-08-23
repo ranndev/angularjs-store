@@ -5,11 +5,7 @@ import HookLink from './models/hook-link';
 let store: NgStore<typeof state>;
 
 const state = { foo: '', bar: 1, baz: false };
-const validQueries: HookActionQuery[] = [
-  'TEST_ACTION',
-  ['TEST_ACTION', 'SOME_ACTION'],
-  /^TEST_ACTION$/,
-];
+const validQueries: HookActionQuery[] = ['TEST_ACTION', ['TEST_ACTION', 'SOME_ACTION'], /^TEST_ACTION$/];
 
 describe('NgStore', () => {
   beforeEach(() => {
