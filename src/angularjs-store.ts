@@ -5,7 +5,7 @@ import hold, { StateHolder } from './models/state-holder';
 /* istanbul ignore next */
 if (__DEV__) {
   if (!angular) {
-    console.warn('Seems like you forgot to load angular? Make sure to load it first before the angularjs-store.');
+    console.warn('Seems like you forgot to load angular. Make sure to load it first before the angularjs-store.');
   }
 }
 
