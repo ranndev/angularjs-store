@@ -26,7 +26,9 @@ export default class Hook<State> {
    * @param force - Ignore the action checking and run the pipes. Default: `false`.
    */
   public run(action: string, state: Readonly<State>, force = false) {
-    if (!force && !this.$$match(action)) { return; }
+    if (!force && !this.$$match(action)) {
+      return;
+    }
 
     this.$$callback(state, !this.$$called);
     this.$$called = true;

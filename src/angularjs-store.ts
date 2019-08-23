@@ -3,15 +3,13 @@ import Hook, { HookCallback, HookMatcher } from './models/hook';
 import HookLink from './models/hook-link';
 import hold, { StateHolder } from './models/state-holder';
 
-export type HookActionQuery<Actions extends string[] = string[]> = '*'
+export type HookActionQuery<Actions extends string[] = string[]> =
+  | '*'
   | Actions[number]
   | Array<Actions[number] | '*'>
   | RegExp;
 
-export default class NgStore<
-  State extends { [key: string]: any } = {},
-  Actions extends string[] = string[],
-> {
+export default class NgStore<State extends { [key: string]: any } = {}, Actions extends string[] = string[]> {
   private $$stateHolder: StateHolder<State>;
 
   /** All registered hooks from the store */

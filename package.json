@@ -46,9 +46,13 @@
     "awesome-typescript-loader": "^5.2.1",
     "clean-webpack-plugin": "^2.0.2",
     "codecov": "^3.5.0",
+    "husky": "^3.0.4",
     "jest": "^24.8.0",
+    "prettier": "^1.18.2",
+    "pretty-quick": "^1.11.1",
     "ts-jest": "^24.0.2",
     "tslint": "^5.16.0",
+    "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.4.5",
     "webpack": "^4.32.2",
     "webpack-cli": "^3.3.2"
@@ -60,6 +64,13 @@
     "angular": "^1.7.8"
   },
   "greenkeeper": {
-    "ignore": ["clean-webpack-plugin"]
+    "ignore": [
+      "clean-webpack-plugin"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
   }
 }
