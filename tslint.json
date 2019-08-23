@@ -3,7 +3,7 @@
   "extends": ["tslint:recommended", "tslint-config-prettier"],
   "rules": {
     "interface-name": [true, "never-prefix"],
-    "quotemark": [true, "single"],
-    "unified-signatures": [false]
+    "unified-signatures": [false],
+    "no-console": [false, "log", "error"]
   }
 }

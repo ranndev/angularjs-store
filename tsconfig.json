@@ -9,15 +9,5 @@
     "lib": ["es2017", "dom"],
     "skipLibCheck": true
   },
-  "include": [
-    "./src"
-  ],
-  "exclude": [
-    ".vscode",
-    "./coverage",
-    "./demo",
-    "./dist",
-    "./images",
-    "./node_modules"
-  ]
+  "include": ["./src", "./typings"]
 }

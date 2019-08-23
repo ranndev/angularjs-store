@@ -1,7 +1,12 @@
-import angular from 'angular';
 import Hook, { HookCallback, HookMatcher } from './models/hook';
 import HookLink from './models/hook-link';
 import hold, { StateHolder } from './models/state-holder';
+
+if (__DEV__) {
+  if (!angular) {
+    console.warn('Seems like you forgot to load angular? Make sure to load it first before the angularjs-store.');
+  }
+}
 
 export type HookActionQuery<Actions extends string[] = string[]> =
   | '*'
