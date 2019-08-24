@@ -28,9 +28,13 @@ https://angularjs-store.gitbook.io/docs
 
 ## Demo
 
-https://angularjs-store-demo.netlify.com  
+https://angularjs-store-demo.netlify.com
 https://github.com/rannie-peralta/angularjs-store-demo
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+
+## Collaborators
+
+- [Rannie Peralta](https://github.com/rannie-peralta)
