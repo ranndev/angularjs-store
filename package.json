@@ -62,7 +62,7 @@
     "typescript": "^3.5.3"
   },
   "dependencies": {
-    "@types/angular": "1.6.54"
+    "@types/angular": "^1.6.56"
   },
   "peerDependencies": {
     "angular": "^1.7.8"
