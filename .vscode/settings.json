@@ -15,5 +15,29 @@
   },
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    ".ts_cache*": true,
+    "coverage": true
+  },
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/*/**": true,
+    ".ts_cache*": true,
+    "coverage": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    ".ts_cache*": true,
+    "coverage": true,
+    "dist": true
   }
 }

@@ -3,23 +3,21 @@
 
 module.exports = {
   collectCoverage: true,
-  collectCoverageFrom: [
-    "<rootDir>/src/**/*",
-    "!<rootDir>/src/**/__snapshots__/*"
-  ],
-  coverageDirectory: "coverage",
-  setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
-  testMatch: [
-    "<rootDir>/src/**/*.test.ts"
-  ],
+  collectCoverageFrom: ['<rootDir>/src/**/*', '!<rootDir>/src/**/__snapshots__/*'],
+  coverageDirectory: 'coverage',
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  testMatch: ['<rootDir>/src/**/*.test.ts'],
   testPathIgnorePatterns: [
-    "<rootDir>/.vscode",
-    "<rootDir>/coverage",
-    "<rootDir>/dist",
-    "<rootDir>/images",
-    "<rootDir>/node_modules"
+    '<rootDir>/.vscode',
+    '<rootDir>/coverage',
+    '<rootDir>/dist',
+    '<rootDir>/images',
+    '<rootDir>/node_modules',
   ],
   transform: {
-    "^.+\\.ts$": "ts-jest"
-  }
+    '^.+\\.ts$': 'ts-jest',
+  },
+  globals: {
+    __DEV__: true,
+  },
 };

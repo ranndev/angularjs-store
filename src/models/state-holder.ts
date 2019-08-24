@@ -1,5 +1,3 @@
-import angular from 'angular';
-
 export interface StateHolder<State> {
   /**
    * Get a new copy of state.

@@ -6,18 +6,7 @@
     "sourceMap": true,
     "strictNullChecks": true,
     "target": "es3",
-    "lib": ["es2017", "dom"],
-    "skipLibCheck": true
+    "lib": ["es2017", "dom"]
   },
-  "include": [
-    "./src"
-  ],
-  "exclude": [
-    ".vscode",
-    "./coverage",
-    "./demo",
-    "./dist",
-    "./images",
-    "./node_modules"
-  ]
+  "include": ["./src", "./typings"]
 }
