@@ -6,7 +6,7 @@ First off, thank you for considering contributing to AngularJS Store. It’s peo
 
 1. Make sure to [file an issue](https://github.com/rannie-peralta/angularjs-store/issues/new) first.
 2. Before [you create your pull request](https://github.com/rannie-peralta/angularjs-store/pulls).
-3. Then, let's discuss there what we can do.
+3. Let's discuss there what we can do.
 
 **Documentation correction**
 
