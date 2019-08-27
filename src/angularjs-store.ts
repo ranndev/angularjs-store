@@ -33,7 +33,7 @@ export default class NgStore<State extends { [key: string]: any } = {}, Actions 
       if (Object.prototype.toString.call(initialState) !== '[object Object]') {
         console.warn(
           'Initializing the store with a non-object state is not recommended.\n',
-          "If you're trying to create a store with primitive type state, try wrap it in object.",
+          "If you're trying to create a store with primitive type of state, try to wrap it with object.",
         );
       }
     }
@@ -132,8 +132,8 @@ export default class NgStore<State extends { [key: string]: any } = {}, Actions 
         console.warn(
           "You're about to update the state using a non-object value.\n",
           'Did you use non-object state?\n',
-          'If yes, store with a non-object state is not recommended.\n',
-          'Primitive type state must wrap by object.',
+          "If yes, it's not recommended.\n",
+          'Primitive type state must wrap with object.',
         );
       }
     }
