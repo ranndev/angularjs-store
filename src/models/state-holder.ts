@@ -6,13 +6,12 @@ export interface StateHolder<State> {
 
   /**
    * Update the current state.
-   *
-   * @param partialState - New partial state.
+   * @param partialState New partial state.
    */
   set(partialState: Partial<State>): void;
 }
 
-export default function hold<State>(state: State): StateHolder<State> {
+export default function holdState<State>(state: State): StateHolder<State> {
   const $$state = angular.copy(state);
 
   const get = () => {

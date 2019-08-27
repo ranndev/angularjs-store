@@ -4,6 +4,6 @@
   "rules": {
     "interface-name": [true, "never-prefix"],
     "unified-signatures": [false],
-    "no-console": [false, "log", "error"]
+    "no-console": [true, "log", "error"]
   }
 }
