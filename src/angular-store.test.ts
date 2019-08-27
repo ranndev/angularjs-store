@@ -61,6 +61,12 @@ describe('NgStore', () => {
       });
     });
 
+    it('should throw when passing a non-function callback', () => {
+      expect(() => {
+        store.hook('', (null as unknown) as () => void);
+      }).toThrow();
+    });
+
     it('should run the callback once after register the hook', () => {
       validQueries.forEach((query) => {
         const callback = jest.fn();

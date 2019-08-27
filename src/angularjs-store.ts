@@ -1,6 +1,6 @@
 import Hook, { HookCallback, HookMatcher } from './models/hook';
 import HookLink from './models/hook-link';
-import hold, { StateHolder } from './models/state-holder';
+import holdState, { StateHolder } from './models/state-holder';
 
 /* istanbul ignore next */
 if (__DEV__) {
@@ -18,16 +18,27 @@ export type HookActionQuery<Actions extends string[] = string[]> =
 export default class NgStore<State extends { [key: string]: any } = {}, Actions extends string[] = string[]> {
   private $$stateHolder: StateHolder<State>;
 
-  /** All registered hooks from the store */
+  /**
+   * All registered hooks from the store.
+   */
   private $$hooks: Array<Hook<State>> = [];
 
   /**
    * Create a Store.
-   *
-   * @param initialState - Initial state value.
+   * @param initialState Initial state value.
    */
   constructor(initialState: State) {
-    this.$$stateHolder = hold(initialState);
+    /* istanbul ignore next */
+    if (__DEV__) {
+      if (Object.prototype.toString.call(initialState) !== '[object Object]') {
+        console.warn(
+          'Initializing the store with a non-object state is not recommended.\n',
+          "If you're trying to create a store with primitive type of state, try to wrap it with object.",
+        );
+      }
+    }
+
+    this.$$stateHolder = holdState(initialState);
   }
 
   /**
@@ -38,26 +49,49 @@ export default class NgStore<State extends { [key: string]: any } = {}, Actions 
   }
 
   /**
-   * Attach a hook to the store and get notified everytime the given query matched the dispatched action.
-   *
-   * @param query - A query for the dispatched action.
-   * @param callback - Invoke when query match to dispatched action.
+   * Attach a hook to the store and get notified everytime the given query matched to dispatched action.
+   * @param query A query for the dispatched action.
+   * @param callback Invoke when query match to dispatched action.
    */
   public hook(query: HookActionQuery<Actions>, callback: HookCallback<State>) {
     let matcher: HookMatcher;
 
     if (typeof query === 'string') {
-      if (query === '*') {
-        matcher = () => true;
-      } else {
-        matcher = (action) => action === query;
-      }
+      matcher = query === '*' ? () => true : (action) => action === query;
     } else if (Array.isArray(query)) {
-      matcher = (action) => query.indexOf(action) > -1;
+      /* istanbul ignore next */
+      if (__DEV__) {
+        const nonStringQueryItem = query.find((queryItem) => typeof queryItem !== 'string');
+
+        if (nonStringQueryItem) {
+          console.warn(
+            `Hook action query contains non-string value (${nonStringQueryItem}).\n`,
+            'Using array as query must only contains string.',
+          );
+        }
+      }
+
+      matcher = (action) => query.includes(action);
     } else if (query instanceof RegExp) {
       matcher = (action) => query.test(action);
     } else {
-      throw new Error('Hook action query must be a either string, array of string or regular expression.');
+      /* istanbul ignore next */
+      if (__DEV__) {
+        throw new Error('Hook action query must be a either string, array of string, or regular expression.');
+      }
+
+      /* istanbul ignore next */
+      throw new TypeError('Invalid hook query.');
+    }
+
+    if (!angular.isFunction(callback)) {
+      /* istanbul ignore next */
+      if (__DEV__) {
+        throw new Error('Hook callback must be a function.');
+      }
+
+      /* istanbul ignore next */
+      throw new TypeError('Invalid hook callback.');
     }
 
     const hook = new Hook<State>(matcher, callback);
@@ -74,17 +108,15 @@ export default class NgStore<State extends { [key: string]: any } = {}, Actions 
 
   /**
    * Dispatch an action for updating state.
-   *
-   * @param action - Action name.
-   * @param state - Store new state.
+   * @param action Action name.
+   * @param state New state of store.
    */
   public dispatch(action: Actions[number], state: Partial<State>): void;
 
   /**
    * Dispatch an action for updating state.
-   *
-   * @param action - Action name.
-   * @param setState - State setter with the access to previous state.
+   * @param action Action name.
+   * @param setState State setter.
    */
   public dispatch(action: Actions[number], setState: (prevState: State) => Partial<State>): void;
 
@@ -92,11 +124,21 @@ export default class NgStore<State extends { [key: string]: any } = {}, Actions 
    * Implementation.
    */
   public dispatch(action: Actions[number], state: Partial<State> | ((prevState: State) => Partial<State>)) {
-    if (angular.isFunction(state)) {
-      this.$$stateHolder.set(state(this.$$stateHolder.get()));
-    } else {
-      this.$$stateHolder.set(state);
+    const partialState = angular.isFunction(state) ? state(this.$$stateHolder.get()) : state;
+
+    /* istanbul ignore next */
+    if (__DEV__) {
+      if (Object.prototype.toString.call(partialState) !== '[object Object]') {
+        console.warn(
+          "You're about to update the state using a non-object value.\n",
+          'Did you use non-object state?\n',
+          "If yes, it's not recommended.\n",
+          'Primitive type state must wrap with object.',
+        );
+      }
     }
+
+    this.$$stateHolder.set(partialState);
 
     for (const hook of this.$$hooks) {
       hook.run(action, this.$$stateHolder.get());
