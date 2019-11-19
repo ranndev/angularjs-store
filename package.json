@@ -42,7 +42,7 @@
   "devDependencies": {
     "@types/angular-mocks": "1.7.0",
     "@types/jest": "^24.0.13",
-    "angular": "1.7.8",
+    "angular": "1.7.9",
     "angular-mocks": "1.7.8",
     "codecov": "^3.5.0",
     "gulp": "^4.0.2",
