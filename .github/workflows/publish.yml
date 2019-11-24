@@ -20,7 +20,7 @@ jobs:
           npm run lint
           npm run build
           npm run test
-          npx codecov --file=./coverage/coverage-final.json
+          npx codecov --file=./coverage/coverage-final.json --disable=gcov
         env:
           CI: true
           CODECOV_TOKEN: ${{secrets.CODECOV_TOKEN}}
