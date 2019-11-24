@@ -1,14 +1,12 @@
 {
-  "name": "angularjs-store",
-  "version": "4.0.1",
+  "name": "@ranndev/angularjs-store",
+  "version": "4.0.2",
   "description": "A tool to easily manage your state in AngularJS Application",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/angularjs-store.js",
   "types": "dist/esm/angularjs-store.d.ts",
   "scripts": {
     "start": "webpack",
-    "prepublishOnly": "npm run build",
-    "prebuild": "npm run lint && npm run test",
     "build": "gulp build",
     "watch": "gulp watch",
     "test:watch": "jest --watch --config=./jest.config.js",
@@ -18,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rannie-peralta/angularjs-store.git"
+    "url": "git+https://github.com/ranndev/angularjs-store.git"
   },
   "keywords": [
     "angularjs",
@@ -36,30 +34,30 @@
   "author": "Rannie Peralta",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/rannie-peralta/angularjs-store/issues"
+    "url": "https://github.com/ranndev/angularjs-store/issues"
   },
-  "homepage": "https://github.com/rannie-peralta/angularjs-store#readme",
+  "homepage": "https://github.com/ranndev/angularjs-store#readme",
   "devDependencies": {
     "@types/angular-mocks": "1.7.0",
-    "@types/jest": "^24.0.13",
-    "angular": "1.7.9",
+    "@types/jest": "^24.0.23",
+    "angular": "^1.7.9",
     "angular-mocks": "1.7.9",
-    "codecov": "^3.5.0",
+    "codecov": "^3.6.1",
     "gulp": "^4.0.2",
     "gulp-clean": "^0.4.0",
-    "husky": "^3.0.7",
+    "husky": "^3.1.0",
     "jest": "^24.9.0",
     "mkdirp": "^0.5.1",
-    "prettier": "^1.18.2",
-    "pretty-quick": "^2.0.0",
-    "rollup": "^1.26.0",
+    "prettier": "^1.19.1",
+    "pretty-quick": "^2.0.1",
+    "rollup": "^1.27.4",
     "rollup-plugin-replace": "^2.2.0",
-    "rollup-plugin-terser": "^5.1.1",
-    "rollup-plugin-typescript2": "^0.25.0",
-    "ts-jest": "^24.0.2",
-    "tslint": "^5.19.0",
+    "rollup-plugin-terser": "^5.1.2",
+    "rollup-plugin-typescript2": "^0.25.2",
+    "ts-jest": "^24.2.0",
+    "tslint": "^5.20.1",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.5.3"
+    "typescript": "^3.7.2"
   },
   "dependencies": {
     "@types/angular": "^1.6.56"
