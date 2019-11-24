@@ -1,6 +1,6 @@
 {
   "name": "@ranndev/angularjs-store",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "A tool to easily manage your state in AngularJS Application",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/angularjs-store.js",
