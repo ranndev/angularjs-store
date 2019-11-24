@@ -1,0 +1,27 @@
+name: build
+
+on:
+  push:
+    branches-ignore:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: npm ci, build, and test
+        run: |
+          npm ci
+          npm run lint
+          npm run build
+          npm run test
+          npx codecov --file=./.nyc_output/out.json
+        env:
+          CI: true
+          CODECOV_TOKEN: ${{secrets.CODECOV_TOKEN}}

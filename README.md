@@ -4,9 +4,9 @@
 
 AngularJS Store will guide you to create a one-way data flow in your application (Single Source of Truth). Manage your AngularJS application's state into a very predictable way.
 
-[![Build Status](https://travis-ci.com/rannie-peralta/angularjs-store.svg?branch=master)](https://travis-ci.com/rannie-peralta/angularjs-store)
-[![codecov](https://codecov.io/gh/rannie-peralta/angularjs-store/branch/develop/graph/badge.svg)](https://codecov.io/gh/rannie-peralta/angularjs-store)
-[![Greenkeeper badge](https://badges.greenkeeper.io/rannie-peralta/angularjs-store.svg)](https://greenkeeper.io/)
+[![Build Status](https://travis-ci.com/ranndev/angularjs-store.svg?branch=master)](https://travis-ci.com/ranndev/angularjs-store)
+[![codecov](https://codecov.io/gh/ranndev/angularjs-store/branch/develop/graph/badge.svg)](https://codecov.io/gh/ranndev/angularjs-store)
+[![Greenkeeper badge](https://badges.greenkeeper.io/ranndev/angularjs-store.svg)](https://greenkeeper.io/)
 
 ## Installation
 
@@ -141,7 +141,7 @@ app.controller('YourController', function YourController($scope, counterStore) {
 ## Demo
 
 - Sample App - https://angularjs-store-demo.netlify.com
-- Source Code - https://github.com/rannie-peralta/angularjs-store-demo
+- Source Code - https://github.com/ranndev/angularjs-store-demo
 
 ## Contributing
 
@@ -149,7 +149,7 @@ AngularJS Store is an open source project and we love to receive contributions f
 
 ## Collaborators
 
-- [Rannie Peralta](https://github.com/rannie-peralta)
+- [Rannie Peralta](https://github.com/ranndev)
 
 ## License
 

@@ -4,13 +4,13 @@ First off, thank you for considering contributing to AngularJS Store. It’s peo
 
 **Found an issue or want to submit a new feature?**
 
-1. Make sure to [file an issue](https://github.com/rannie-peralta/angularjs-store/issues/new) first.
-2. Before [you create your pull request](https://github.com/rannie-peralta/angularjs-store/pulls).
+1. Make sure to [file an issue](https://github.com/ranndev/angularjs-store/issues/new) first.
+2. Before [you create your pull request](https://github.com/ranndev/angularjs-store/pulls).
 3. Let's discuss there what we can do.
 
 **Documentation correction**
 
-1. [File an issue](https://github.com/rannie-peralta/angularjs-store/issues/new) for your spotted incorrect documentation.
+1. [File an issue](https://github.com/ranndev/angularjs-store/issues/new) for your spotted incorrect documentation.
 2. After we confirmed that it was really an error,
    - you either be granted to have an access to correct it on [GitBook](https://www.gitbook.com/) by your own
    - or other contributor that already have an access will update the documentation for you.

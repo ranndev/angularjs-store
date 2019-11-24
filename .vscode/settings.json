@@ -1,8 +1,6 @@
 {
   "editor.formatOnSave": true,
   "editor.rulers": [120],
-  "prettier.eslintIntegration": false,
-  "prettier.tslintIntegration": true,
 
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
