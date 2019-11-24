@@ -8,6 +8,7 @@ module.exports = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   testMatch: ['<rootDir>/src/**/*.test.ts'],
   testPathIgnorePatterns: [
+    '<rootDir>/.github',
     '<rootDir>/.vscode',
     '<rootDir>/coverage',
     '<rootDir>/dist',
