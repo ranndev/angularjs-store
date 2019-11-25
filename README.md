@@ -13,23 +13,23 @@ AngularJS Store will guide you to create a one-way data flow in your application
 **NPM**
 
 ```
-npm install --save angularjs-store
+npm install --save @ranndev/angularjs-store
 ```
 
 **Yarn**
 
 ```
-yarn add angularjs-store
+yarn add @ranndev/angularjs-store
 ```
 
 **CDN**
 
 ```html
 <!-- For development -->
-<script src="https://cdn.jsdelivr.net/npm/angularjs-store@4.0.1/dist/umd/angularjs-store.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@ranndev/angularjs-store@4.0.2/dist/umd/angularjs-store.js"></script>
 
 <!-- For production -->
-<script src="https://cdn.jsdelivr.net/npm/angularjs-store@4.0.1/dist/umd/angularjs-store.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@ranndev/angularjs-store@4.0.2/dist/umd/angularjs-store.min.js"></script>
 ```
 
 ## Quick Start
