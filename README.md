@@ -4,7 +4,7 @@
 
 AngularJS Store will guide you to create a one-way data flow in your application (Single Source of Truth). Manage your AngularJS application's state into a very predictable way.
 
-[![Build Status](https://travis-ci.com/ranndev/angularjs-store.svg?branch=master)](https://travis-ci.com/ranndev/angularjs-store)
+[![Build Status](https://github.com/ranndev/angularjs-store/workflows/build/badge.svg?branch=master)](https://github.com/ranndev/angularjs-store/actions)
 [![codecov](https://codecov.io/gh/ranndev/angularjs-store/branch/develop/graph/badge.svg)](https://codecov.io/gh/ranndev/angularjs-store)
 [![Greenkeeper badge](https://badges.greenkeeper.io/ranndev/angularjs-store.svg)](https://greenkeeper.io/)
 
