@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  build:
+  prebuild:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -14,11 +14,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12
-      - name: npm ci, build, and test
+      - name: npm ci, lint, and test
         run: |
           npm ci
           npm run lint
-          npm run build
           npm run test
           npx codecov --file=./coverage/coverage-final.json --disable=gcov
         env:
@@ -26,7 +25,7 @@ jobs:
           CODECOV_TOKEN: ${{secrets.CODECOV_TOKEN}}
 
   publish-npm:
-    needs: build
+    needs: prebuild
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -40,7 +39,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
   publish-gpr:
-    needs: build
+    needs: prebuild
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
